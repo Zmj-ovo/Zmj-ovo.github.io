@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>高代练习题 | My Blog</title><meta name="author" content="Blog Author"><meta name="copyright" content="Blog Author"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="题目 给定数域$K$上的矩阵$A&#x3D;\begin{pmatrix} 3 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 3 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 3 &amp; 3 \\ 0 &amp; 0 &amp; 3 &amp; 11 \end{pmatrix}$，设$C(A)&#x3D;{B \in M_4(K)\mid AB">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>高代练习题 | My Blog</title><meta name="author" content="Blog Author"><meta name="copyright" content="Blog Author"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="题目 给定数域$K$上的矩阵$A&#x3D;\begin{pmatrix} 3 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 3 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 3 &amp; 3 \\ 0 &amp; 0 &amp; 3 &amp; 11 \end{pmatrix}$，设$C(A)&#x3D;\{B \in M_4(K)\mid AB">
 <meta property="og:type" content="article">
 <meta property="og:title" content="高代练习题">
 <meta property="og:url" content="https://zmj-ovo.github.io/2026/07/28/%E9%AB%98%E4%BB%A3%E7%BB%83%E4%B9%A0%E9%A2%98/index.html">
 <meta property="og:site_name" content="My Blog">
-<meta property="og:description" content="题目 给定数域$K$上的矩阵$A&#x3D;\begin{pmatrix} 3 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 3 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 3 &amp; 3 \\ 0 &amp; 0 &amp; 3 &amp; 11 \end{pmatrix}$，设$C(A)&#x3D;{B \in M_4(K)\mid AB">
+<meta property="og:description" content="题目 给定数域$K$上的矩阵$A&#x3D;\begin{pmatrix} 3 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 3 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 3 &amp; 3 \\ 0 &amp; 0 &amp; 3 &amp; 11 \end{pmatrix}$，设$C(A)&#x3D;\{B \in M_4(K)\mid AB">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zmj-ovo.github.io/img/butterfly-icon.png">
 <meta property="article:published_time" content="2026-07-28T12:24:55.000Z">
@@ -207,7 +207,7 @@
 0 &amp; 3 &amp; 0 &amp; 0 \\
 0 &amp; 0 &amp; 3 &amp; 3 \\
 0 &amp; 0 &amp; 3 &amp; 11
-\end{pmatrix}$，设$C(A)&#x3D;{B \in M_4(K)\mid AB &#x3D; BA}$，定义线性映射$\varphi:C(A) \to M_4(K)$为$X \mapsto \varphi(X)&#x3D;AX^T - XA$。求$C(A)$和$\mathrm{Im}(\varphi)$的维数。</li>
+\end{pmatrix}$，设$C(A)&#x3D;\{B \in M_4(K)\mid AB &#x3D; BA\}$，定义线性映射$\varphi:C(A) \to M_4(K)$为$X \mapsto \varphi(X)&#x3D;AX^T - XA$。求$C(A)$和$\mathrm{Im}(\varphi)$的维数。</li>
 </ol>
 <p>$$
 A&#x3D;\begin{bmatrix}
@@ -215,7 +215,7 @@ A&#x3D;\begin{bmatrix}
 0 &amp; 3 &amp; 0 &amp; 0 \\
 0 &amp; 0 &amp; 3 &amp; 3 \\
 0 &amp; 0 &amp; 3 &amp; 11
-\end{bmatrix},\quad C(A)&#x3D;{ B \in M_4(K) \mid AB&#x3D;BA }
+\end{bmatrix},\quad C(A)&#x3D;\{ B \in M_4(K) \mid AB&#x3D;BA \}
 $$
 $\varphi: C(A) \to M_4(K),\ X \mapsto \varphi(X)&#x3D;AX^T-XA$</p>
 <p>$X \in C(A) \implies AX&#x3D;XA$
@@ -226,7 +226,7 @@ $$</p>
 \dim(C(A))&#x3D;\dim(\mathrm{Im}(\varphi))+\dim(\ker(\varphi))
 $$</p>
 <p>$$
-\ker \varphi &#x3D; { X \in C(A) \mid X^T&#x3D;X }
+\ker \varphi &#x3D; \{ X \in C(A) \mid X^T&#x3D;X \}
 $$</p>
 <p>对$A$分块：$A&#x3D;\begin{bmatrix} A_1 &amp; 0 \\ 0 &amp; A_2 \end{bmatrix}$，设$B&#x3D;\begin{bmatrix} B_1 &amp; B_2 \\ B_3 &amp; B_4 \end{bmatrix}$，由$AB&#x3D;BA$：
 $$
