@@ -1,0 +1,213 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>高代练习题 | My Blog</title><meta name="author" content="Blog Author"><meta name="copyright" content="Blog Author"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="题目 给定数域$K$上的矩阵$A&#x3D;\begin{pmatrix}3 &amp; 0 &amp; 0 &amp; 0 \0 &amp; 3 &amp; 0 &amp; 0 \0 &amp; 0 &amp; 3 &amp; 3 \0 &amp; 0 &amp; 3 &amp; 11\end{pmatrix}$，设$C(A)&#x3D;{B \in M_4(K)\mid AB &#x3D; B">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高代练习题">
+<meta property="og:url" content="https://zmj-ovo.github.io/2026/07/28/%E9%AB%98%E4%BB%A3%E7%BB%83%E4%B9%A0%E9%A2%98/index.html">
+<meta property="og:site_name" content="My Blog">
+<meta property="og:description" content="题目 给定数域$K$上的矩阵$A&#x3D;\begin{pmatrix}3 &amp; 0 &amp; 0 &amp; 0 \0 &amp; 3 &amp; 0 &amp; 0 \0 &amp; 0 &amp; 3 &amp; 3 \0 &amp; 0 &amp; 3 &amp; 11\end{pmatrix}$，设$C(A)&#x3D;{B \in M_4(K)\mid AB &#x3D; B">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zmj-ovo.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-07-28T12:24:55.000Z">
+<meta property="article:modified_time" content="2026-07-28T12:51:43.629Z">
+<meta property="article:author" content="Blog Author">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zmj-ovo.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "高代练习题",
+  "url": "https://zmj-ovo.github.io/2026/07/28/%E9%AB%98%E4%BB%A3%E7%BB%83%E4%B9%A0%E9%A2%98/",
+  "image": "https://zmj-ovo.github.io/img/butterfly-icon.png",
+  "datePublished": "2026-07-28T12:24:55.000Z",
+  "dateModified": "2026-07-28T12:51:43.629Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Blog Author",
+      "url": "https://Zmj-ovo.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zmj-ovo.github.io/2026/07/28/%E9%AB%98%E4%BB%A3%E7%BB%83%E4%B9%A0%E9%A2%98/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '高代练习题',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">My Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">高代练习题</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">高代练习题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-07-28T12:24:55.000Z" title="发表于 2026-07-28 20:24:55">2026-07-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-07-28T12:51:43.629Z" title="更新于 2026-07-28 20:51:43">2026-07-28</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><ol>
+<li>给定数域$K$上的矩阵$A&#x3D;\begin{pmatrix}<br>3 &amp; 0 &amp; 0 &amp; 0 \<br>0 &amp; 3 &amp; 0 &amp; 0 \<br>0 &amp; 0 &amp; 3 &amp; 3 \<br>0 &amp; 0 &amp; 3 &amp; 11<br>\end{pmatrix}$，设$C(A)&#x3D;{B \in M_4(K)\mid AB &#x3D; BA}$，定义线性映射$\varphi:C(A) \to M_4(K)$为$X \mapsto \varphi(X)&#x3D;AX^T - XA$。求$C(A)$和$\mathrm{Im}(\varphi)$的维数。</li>
+</ol>
+<p>$$<br>A&#x3D;\begin{bmatrix}<br>3 &amp; 0 &amp; 0 &amp; 0 \<br>0 &amp; 3 &amp; 0 &amp; 0 \<br>0 &amp; 0 &amp; 3 &amp; 3 \<br>0 &amp; 0 &amp; 3 &amp; 11<br>\end{bmatrix},\quad C(A)&#x3D;{ B \in M_4(K) \mid AB&#x3D;BA }<br>$$<br>$\varphi: C(A) \to M_4(K),\ X \mapsto \varphi(X)&#x3D;AX^T-XA$</p>
+<p>$X \in C(A) \implies AX&#x3D;XA$<br>$$<br>\varphi(X)&#x3D;AX^T-AX &#x3D; A(X^T-X)<br>$$</p>
+<p>$$<br>\dim(C(A))&#x3D;\dim(\mathrm{Im}(\varphi))+\dim(\ker(\varphi))<br>$$</p>
+<p>$$<br>\ker \varphi &#x3D; { X \in C(A) \mid X^T&#x3D;X }<br>$$</p>
+<p>对$A$分块：$A&#x3D;\begin{bmatrix} A_1 &amp; 0 \ 0 &amp; A_2 \end{bmatrix}$，设$B&#x3D;\begin{bmatrix} B_1 &amp; B_2 \ B_3 &amp; B_4 \end{bmatrix}$，由$AB&#x3D;BA$：<br>$$<br>\begin{bmatrix}<br>A_1 &amp; 0 \<br>0 &amp; A_2<br>\end{bmatrix}\begin{bmatrix}<br>B_1 &amp; B_2 \<br>B_3 &amp; B_4<br>\end{bmatrix}&#x3D;\begin{bmatrix}<br>B_1 &amp; B_2 \<br>B_3 &amp; B_4<br>\end{bmatrix}\begin{bmatrix}<br>A_1 &amp; 0 \<br>0 &amp; A_2<br>\end{bmatrix}<br>$$<br>展开得：<br>$$<br>\begin{bmatrix}<br>A_1B_1 &amp; A_1B_2 \<br>A_2B_3 &amp; A_2B_4<br>\end{bmatrix}&#x3D;\begin{bmatrix}<br>A_1B_1 &amp; B_2A_2 \<br>B_3A_1 &amp; B_4A_2<br>\end{bmatrix}<br>$$<br>等价条件：<br>$$<br>A_1B_2&#x3D;B_2A_2,\quad A_2B_3&#x3D;B_3A_1,\quad A_2B_4&#x3D;B_4A_2<br>$$<br>$$<br>B_2(A_1-A_2)&#x3D;0,\quad 0&#x3D;(A_1-A_2)B_3<br>$$<br>$$<br>A_2&#x3D;\begin{bmatrix} 3 &amp; 3 \ 3 &amp; 11 \end{bmatrix},\quad B_4&#x3D;\begin{bmatrix} a &amp; b \ c &amp; d \end{bmatrix}<br>$$<br>$$<br>\begin{bmatrix} 3 &amp; 3 \ 3 &amp; 11 \end{bmatrix}\begin{bmatrix} a &amp; b \ c &amp; d \end{bmatrix}&#x3D;\begin{bmatrix} a &amp; b \ c &amp; d \end{bmatrix}\begin{bmatrix} 3 &amp; 3 \ 3 &amp; 11 \end{bmatrix}<br>$$<br>$$<br>A_1-A_2&#x3D;\begin{bmatrix} 0 &amp; -3 \ -3 &amp; -8 \end{bmatrix},\quad B_2\cdot\begin{bmatrix} 0 &amp; -3 \ -3 &amp; -8 \end{bmatrix}&#x3D;0,\quad \begin{bmatrix} 0 &amp; -3 \ -3 &amp; -8 \end{bmatrix}\cdot B_3&#x3D;0<br>$$<br>矩阵等式展开：<br>$$<br>3a+3c&#x3D;3a+3b \implies c&#x3D;b<br>$$<br>$$<br>3b+11d&#x3D;3c+11d \implies 3a+11b&#x3D;3b+3d<br>$$<br>$$<br>3b+11d&#x3D;3c+11d \implies c&#x3D;b<br>$$<br>得$\dim(B_4)&#x3D;4-2&#x3D;2$，$\dim(B_1)&#x3D;4$，因此<br>$$<br>\dim(C(A))&#x3D;4+2&#x3D;6<br>$$</p>
+<p>对称条件$B^T&#x3D;B$：<br>$\dim(B_1)&#x3D;3$，由$c&#x3D;b$知$B_4&#x3D;B_4^T$，$\dim(B_4)&#x3D;2$<br>$$<br>\dim \ker \varphi&#x3D;5<br>$$<br>由维数公式：<br>$$<br>\dim(\mathrm{Im}(\varphi))&#x3D;6-5&#x3D;1<br>$$</p>
+<h1 id="最终结果"><a href="#最终结果" class="headerlink" title="最终结果"></a>最终结果</h1><p>$\dim C(A)&#x3D;6$，$\dim \mathrm{Im}(\varphi)&#x3D;1$</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://Zmj-ovo.github.io">Blog Author</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zmj-ovo.github.io/2026/07/28/%E9%AB%98%E4%BB%A3%E7%BB%83%E4%B9%A0%E9%A2%98/">https://zmj-ovo.github.io/2026/07/28/%E9%AB%98%E4%BB%A3%E7%BB%83%E4%B9%A0%E9%A2%98/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://Zmj-ovo.github.io" target="_blank">My Blog</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/07/28/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BAGitHub%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" title="使用 Hexo 搭建 GitHub 个人博客"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">使用 Hexo 搭建 GitHub 个人博客</div></div><div class="info-2"><div class="info-item-1">为什么选择 Hexo + GitHub PagesHexo 是一个快速、简洁且高效的静态博客框架。配合 GitHub Pages，可以零成本搭建一个属于自己的博客。 优势 免费托管：GitHub Pages 提供免费的静态网站托管 Markdown 写作：使用 Markdown 编写文章，专注内容 丰富的主题：社区提供了大量精美的主题 一键部署：hexo deploy 即可发布到 GitHub Pages  搭建步骤1. 安装 Hexo1npm install -g hexo-cli  2. 初始化博客123hexo init my-blogcd my-blognpm install  3. 创建文章1hexo new &quot;我的第一篇文章&quot;  4. 本地预览1hexo server  浏览器访问 http://localhost:4000 即可预览。 5. 部署到 GitHub Pages首先在 GitHub 上创建仓库 username.github.io，然后配置 _config.yml： 1234deploy:  type: git  repo: http...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Blog Author</div><div class="author-info-description">个人技术博客，记录学习与思考</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Zmj-ovo" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:mxz422@student.bham.ac.uk" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%80%E7%BB%88%E7%BB%93%E6%9E%9C"><span class="toc-number">2.</span> <span class="toc-text">最终结果</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/07/28/%E9%AB%98%E4%BB%A3%E7%BB%83%E4%B9%A0%E9%A2%98/" title="高代练习题">高代练习题</a><time datetime="2026-07-28T12:24:55.000Z" title="发表于 2026-07-28 20:24:55">2026-07-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/07/28/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BAGitHub%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" title="使用 Hexo 搭建 GitHub 个人博客">使用 Hexo 搭建 GitHub 个人博客</a><time datetime="2026-07-28T04:00:00.000Z" title="发表于 2026-07-28 12:00:00">2026-07-28</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Blog Author</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.6.1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.6.1"></script><script src="/js/main.js?v=5.6.1"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
