@@ -4,7 +4,7 @@
   <url>
     <loc>https://zmj-ovo.github.io/2026/08/06/ISTA/</loc>
     
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-07</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -56,6 +56,13 @@
 
   
   <url>
+    <loc>https://zmj-ovo.github.io/tags/algebra/</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://zmj-ovo.github.io/tags/Anlytic-Geometry/</loc>
     <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -64,13 +71,6 @@
   
   <url>
     <loc>https://zmj-ovo.github.io/tags/Practice/</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://zmj-ovo.github.io/tags/algebra/</loc>
     <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
