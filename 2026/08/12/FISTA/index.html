@@ -1,0 +1,512 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>FISTA | My Blog</title><meta name="author" content="Blog Author"><meta name="copyright" content="Blog Author"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="FISTA Definition ($L$-smoothness). Let $L\ge0$. A function $f:E\to(-\infty,+\infty]$ is said to be $L$-smooth over a set $D\subseteq E$ if it is differentiable over $D$ and satisfies $$\|\nabla f(x)-\">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FISTA">
+<meta property="og:url" content="https://zmj-ovo.github.io/2026/08/12/FISTA/index.html">
+<meta property="og:site_name" content="My Blog">
+<meta property="og:description" content="FISTA Definition ($L$-smoothness). Let $L\ge0$. A function $f:E\to(-\infty,+\infty]$ is said to be $L$-smooth over a set $D\subseteq E$ if it is differentiable over $D$ and satisfies $$\|\nabla f(x)-\">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zmj-ovo.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-08-12T13:29:44.000Z">
+<meta property="article:modified_time" content="2026-08-12T13:36:21.680Z">
+<meta property="article:author" content="Blog Author">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zmj-ovo.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "FISTA",
+  "url": "https://zmj-ovo.github.io/2026/08/12/FISTA/",
+  "image": "https://zmj-ovo.github.io/img/butterfly-icon.png",
+  "datePublished": "2026-08-12T13:29:44.000Z",
+  "dateModified": "2026-08-12T13:36:21.680Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Blog Author",
+      "url": "https://Zmj-ovo.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zmj-ovo.github.io/2026/08/12/FISTA/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'FISTA',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><style>
+  #article-container blockquote {
+    border-left: 4px solid #49b1f5;
+    background: #f0f6fc;
+    padding: 12px 20px;
+    margin: 16px 0;
+    border-radius: 0 8px 8px 0;
+    color: #3a3a3a;
+  }
+  #article-container blockquote p {
+    margin: 4px 0;
+  }
+  [data-theme=dark] #article-container blockquote {
+    background: #1a2430;
+    border-left-color: #5cbdf2;
+    color: #c8d6e5;
+  }
+</style>
+<meta name="generator" content="Hexo 8.1.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">My Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">FISTA</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">FISTA</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-08-12T13:29:44.000Z" title="发表于 2026-08-12 21:29:44">2026-08-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-08-12T13:36:21.680Z" title="更新于 2026-08-12 21:36:21">2026-08-12</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="FISTA"><a href="#FISTA" class="headerlink" title="FISTA"></a>FISTA</h1><blockquote>
+<p><strong>Definition ($L$-smoothness).</strong> Let $L\ge0$. A function $f:E\to(-\infty,+\infty]$ is said to be $L$-smooth over a set $D\subseteq E$ if it is differentiable over $D$ and satisfies
+$$\|\nabla f(x)-\nabla f(y)\|\le L\|x-y\| \quad \forall x,y\in D$$</p>
+</blockquote>
+<blockquote>
+<p><strong>lemma4 (descent lemma):</strong> Let $f:E\to(-\infty,\infty]$ be $L-$smooth function over a given convex set $D$. Then
+$$\forall x,y\in D \quad f(y)\le f(x)+\langle\nabla f(x),y-x\rangle+\frac{L}{2}\|x-y\|_2^2$$</p>
+</blockquote>
+<p><strong>proof</strong>
+Set $h(t)=f\big(x+t(y-x)\big)$
+$$\int_0^1 h'(t)dt = h(1)-h(0)=f(y)-f(x)$$
+$$=\int_0^1 \langle y-x,\nabla f\big(x+t(y-x)\big)\rangle dt$$</p>
+<p>So
+$$f(y)-f(x)-\langle\nabla f(x),y-x\rangle=\int_0^1 \big\langle y-x,\nabla f(x+t(y-x))-\nabla f(x)\big\rangle dt$$</p>
+<p>(Since $L$-smoothness)
+$$\le \int_0^1 \|y-x\|_2\cdot\big\|\nabla f(x+t(y-x))-\nabla f(x)\big\|_2 dt$$
+$$\le \int_0^1 \|y-x\|_2 \cdot L\|t(y-x)\|_2 dt$$
+$$=\int_0^1 Lt\|y-x\|_2^2 dt$$
+$$=\frac{L}{2}\|x-y\|_2^2$$</p>
+<p>So
+$$f(y)\le f(x)+\langle\nabla f(x),y-x\rangle+\frac{L}{2}\|x-y\|_2^2$$</p>
+<p>Iteration of ISTA is
+$$x^{k+1}=\mathrm{prox}_{\beta g}\big(x^k-\beta\nabla f(x^k)\big)$$
+$$x^{k+1}=\mathop{\arg\min}_u\left\{\frac12\big\|u-(x^k-\beta\nabla f(x^k))\big\|_2^2+\beta g(u)\right\}$$</p>
+<p>Set $\beta=\frac1L$
+$$x^{k+1}=\mathop{\arg\min}_u\left\{\frac12\left\|u-x^k+\frac1L\nabla f(x^k)\right\|_2^2+\frac1Lg(u)\right\}$$</p>
+<p>$$=\mathop{\arg\min}_u\left\{\frac12\left(\|u-x^k\|_2^2+\frac1{L^2}\|\nabla f(x^k)\|_2^2+2\frac1L\langle u-x^k,\nabla f(x^k)\rangle\right)+\frac1Lg(u)\right\}$$</p>
+<p>$$=\mathop{\arg\min}_u\left\{\frac L2\|u-x^k\|_2^2+\langle u-x^k,\nabla f(x^k)\rangle+g(u)+f(x^k)\right\}$$</p>
+<p>Set
+$$Q_L(u,z)=f(z)+\langle u-z,\nabla f(z)\rangle+\frac L2\|u-z\|_2^2+g(u)$$
+$$P_L(z)=\mathop{\arg\min}_u Q_L(u,z)$$</p>
+<p>$$F(x)=f(x)+g(x)$$
+$f$ is $L$-smooth convex, $g$ non‑smooth
+iteration is $x^{k+1}=P_L(x^k)$</p>
+<p>by lemma 4
+$$f(P_L(z))\le f(z)+\langle P_L(z)-z,\nabla f(z)\rangle+\frac L2\|P_L(z)-z\|_2^2$$
+$$F(P_L(z))\le Q_L(P_L(z),z)$$</p>
+<blockquote>
+<p><strong>lemma 5</strong>: $\forall x\in\mathbb R^n,\ z\in\mathbb R^n,\ L&gt;0$
+$$F(x)-F(P_L(z))\ge\frac L2\|P-z\|_2^2+L\langle z-x,\,P-z\rangle$$</p>
+</blockquote>
+<p><strong>proof</strong>: by Theorem 1.
+$p=P_L(z)=\mathop{\arg\min}_u Q_L(u,z)$
+$$0\in\partial Q_L(p,z)$$
+$$0\in\nabla f(z)+L(p-z)+\partial g(p)$$
+$$\iff -\big(\nabla f(z)+L(p-z)\big)\in\partial g(p)$$</p>
+<p>Set $\gamma(z)=-\big(\nabla f(z)+L(p-z)\big)$</p>
+<p>Since $(f,g)$ are convex so
+$$f(x)\ge f(z)+\langle\nabla f(z),x-z\rangle$$
+$$g(x)\ge g(p)+\langle\gamma(z),x-p\rangle$$</p>
+<p>$$F(x)\ge f(z)+g(p)+\langle\nabla f(z),x-z\rangle+\langle\gamma(z),x-p\rangle$$</p>
+<p>Since $F(p)\le Q_L(p,z)$
+$$F(x)-F(p)\ge F(x)-Q_L(p,z)$$</p>
+<p>$$\ge \langle\nabla f(z),x-z\rangle+\langle\gamma(z),x-p\rangle-\langle p-z,\nabla f(z)\rangle-\frac L2\|p-z\|_2^2$$</p>
+<p>$$=\langle x-p,\nabla f(z)\rangle+\langle x-p,\gamma(z)\rangle-\frac L2\|p-z\|_2^2$$
+$$=\langle x-p,\nabla f(z)+\gamma(z)\rangle-\frac L2\|p-z\|_2^2$$
+$$=\langle x-p,-L(p-z)\rangle-\frac L2\|p-z\|_2^2$$
+$$=-L\langle x-p,p-z\rangle-\frac L2\|p-z\|_2^2$$</p>
+<p>$$=L\langle p-x,z+p-z\rangle-\frac L2\|p-z\|_2^2$$
+$$=L\|p-z\|_2^2+L\langle z-x,p-z\rangle-\frac L2\|p-z\|_2^2$$
+$$=\frac L2\|p-z\|_2^2+L\langle z-x,p-z\rangle$$</p>
+<p>So
+$$F(x)-F(P_L(z))\ge\frac L2\|p-z\|_2^2+L\langle z-x,p-z\rangle$$</p>
+<p>Set $x^*\in\arg\min F,\ z=x^k,\ P_L(z)=x^{k+1}$</p>
+<p>by lemma 5
+$$F(x^*)-F(x^{k+1})\ge\frac L2\|x^{k+1}-x^k\|_2^2+L\langle x^k-x^*,\,x^{k+1}-x^k\rangle$$
+$$=\frac L2\Big(\|x^{k+1}-x^k\|_2^2+2\langle x^k-x^*,\,x^{k+1}-x^k\rangle\Big)$$
+$$=\frac L2\Big(\|x^{k+1}-x^*\|_2^2-\|x^k-x^*\|_2^2\Big)$$</p>
+<p>$$\frac2L\big(F(x^*)-F(x^{k+1})\big)\ge\|x^{k+1}-x^*\|_2^2-\|x^k-x^*\|_2^2$$</p>
+<p>Set $z=x^k$
+$$F(x^k)-F(x^{k+1})\ge\frac L2\big(\|x^{k+1}-x^k\|_2^2\big)$$</p>
+<p>$$\sum_{k=0}^{n-1}\big(F(x^*)-F(x^{k+1})\big)\cdot\frac2L$$
+$$=\frac2L\Big[nF(x^*)-\sum_{k=0}^{n-1}F(x^{k+1})\Big]$$
+$$\ge\|x^n-x^*\|_2^2-\|x^0-x^*\|_2^2$$</p>
+<p>$$\sum_{k=0}^{n-1}k\big(F(x^k)-F(x^{k+1})\big)\cdot\frac2L\ge\sum_{k=0}^{n-1}k\|x^{k+1}-x^k\|_2^2$$</p>
+<p>$$\frac L2\cdot\text{LHS}=F(x^1)-F(x^2)+2F(x^2)-2F(x^3)+\dots+(n-1)F(x^{n-1})-(n-1)F(x^n)$$
+$$=F(x^1)+F(x^2)+\dots+F(x^{n-1})-(n-1)F(x^n)$$
+$$=F(x^1)+F(x^2)+\dots+F(x^{n-1})+F(x^n)-nF(x^n)$$
+$$=\sum_{k=0}^{n-1}F(x^{k+1})-nF(x^n)$$</p>
+<p>So
+$$\frac2L\Big(\sum_{k=0}^{n-1}F(x^{k+1})-nF(x^n)\Big)\ge\sum_{k=0}^{n-1}k\|x^{k+1}-x^k\|_2^2$$</p>
+<p>Adding these two inequalities gives
+$$\frac2L\big(nF(x^*)-nF(x^n)\big)\ge\|x^n-x^*\|_2^2-\|x^0-x^*\|_2^2+\sum_{k=0}^{n-1}k\|x^{k+1}-x^k\|_2^2$$
+$$\ge-\|x^0-x^*\|_2^2$$</p>
+<p>$$F(x^n)-F(x^*)\le\frac{L\|x^0-x^*\|_2^2}{2n}$$</p>
+<p>So ISTA has a worst‑case complexity result of $O(1/k)$.</p>
+<p>$\tilde{x}$ s.t. $F(\tilde{x})-F(x^*)\le\varepsilon$ is at most $\lceil C/\varepsilon\rceil$ step
+where $C=\dfrac{L\|x^0-x^*\|_2^2}{2n}$</p>
+<h1 id="Iterative-of-FISTA"><a href="#Iterative-of-FISTA" class="headerlink" title="Iterative of FISTA"></a>Iterative of FISTA</h1><p>Set $y^1=x^0,\ t_1=1$
+$$x^k=P_L(y^k)$$
+$$t_{k+1}=\frac{1+\sqrt{1+4t_k^2}}{2}$$
+$$y^{k+1}=x^k+\frac{t_k-1}{t_{k+1}}\big(x^k-x^{k-1}\big)$$</p>
+<p>We can see that
+$$2t_{k+1}=1+\sqrt{1+4t_k^2}$$
+$$1+4t_k^2=4t_{k+1}^2+1-4t_{k+1}$$
+$$t_{k+1}^2-t_{k+1}=t_k^2$$</p>
+<p>$$V_k=F(x^k)-F(x^*)$$
+$$u_k=t_kx^k-(t_k-1)x^{k-1}-x^*$$</p>
+<blockquote>
+<p><strong>lemma 6.</strong>
+For the sequence $\{x_k,y_k\}$ via FISTA, $k\ge1$
+$$\frac2Lt_k^2V_k-\frac2Lt_{k+1}^2V_{k+1}\ge\|u_{k+1}\|_2^2-\|u_k\|_2^2$$</p>
+</blockquote>
+<p><strong>proof</strong>
+By lemma 5.</p>
+<p>Let $z=y^{k+1},\ p=x^{k+1}$
+$$F(x)-F(x^{k+1})\ge\frac L2\|x^{k+1}-y^{k+1}\|_2^2+L\langle y^{k+1}-x,\,x^{k+1}-y^{k+1}\rangle$$</p>
+<p>Let $x=x^k$
+$$F(x^k)-F(x^{k+1})\ge\frac L2\|x^{k+1}-y^{k+1}\|_2^2+L\langle y^{k+1}-x^k,\,x^{k+1}-y^{k+1}\rangle$$</p>
+<p>Let $x=x^*$
+$$F(x^*)-F(x^{k+1})\ge\frac L2\|x^{k+1}-y^{k+1}\|_2^2+L\langle y^{k+1}-x^*,\,x^{k+1}-y^{k+1}\rangle$$</p>
+<p>$$V_k-V_{k+1}\ge\frac L2\|x^{k+1}-y^{k+1}\|_2^2+L\langle y^{k+1}-x^k,\,x^{k+1}-y^{k+1}\rangle$$</p>
+<p>$$-V_{k+1}\ge\frac L2\|x^{k+1}-y^{k+1}\|_2^2+L\langle y^{k+1}-x^*,\,x^{k+1}-y^{k+1}\rangle$$</p>
+<p>Multiplying the first inequality by $(t_{k+1}-1)$ and adding the second gives</p>
+<p>$$(t_{k+1}-1)V_k-(t_{k+1}-1)V_{k+1}-V_{k+1}$$
+$$=(t_{k+1}-1)V_k-t_{k+1}V_{k+1}\ge t_{k+1}\cdot\frac L2\|x^{k+1}-y^{k+1}\|_2^2+L\big[(t_{k+1}-1)(y^{k+1}-x^k)+(y^{k+1}-x^*)\big]\cdot(x^{k+1}-y^{k+1})$$</p>
+<p>$$\ge t_{k+1}\frac L2\|x^{k+1}-y^{k+1}\|_2^2+L(x^{k+1}-y^{k+1})\big[(t_{k+1}-1)(y^{k+1}-x^k)+(y^{k+1}-x^*)\big]$$</p>
+<p>$$=t_{k+1}\frac L2\|x^{k+1}-y^{k+1}\|_2^2+L(x^{k+1}-y^{k+1})\big(t_{k+1}y^{k+1}-t_{k+1}x^k+x^k-x^*\big)$$</p>
+<p>$$\iff \frac2L\Big[\big(t_{k+1}^2-t_{k+1}\big)V_k-t_{k+1}^2V_{k+1}\Big]\ge t_{k+1}^2\|x^{k+1}-y^{k+1}\|_2^2+2\big(t_{k+1}y^{k+1}-t_{k+1}x^k+x^k-x^*\big)$$</p>
+<p>LHS is $\displaystyle\frac2L\big(t_k^2V_k-t_{k+1}^2V_{k+1}\big)$</p>
+<p>RHS is $\displaystyle\|t_{k+1}x^{k+1}-t_{k+1}y^{k+1}\|_2^2+2\big(t_{k+1}x^{k+1}-t_{k+1}y^{k+1}\big)\big(t_{k+1}y^{k+1}-(t_{k+1}-1)x^k-x^*\big)$</p>
+<p>$$t_{k+1}y^{k+1}=t_{k+1}x^k+(t_k-1)(x^k-x^{k-1})$$</p>
+<p>So set $b=t_{k+1}x^{k+1},\ a=t_{k+1}y^{k+1},\ c=(t_{k+1}-1)x^k+x^*$</p>
+<p>$$\|b-a\|_2^2+2(b-a)\cdot(a-c)$$</p>
+<p>$$=\|b-a\|_2^2+2(b-a)\cdot(a-c)$$</p>
+<p>$$=\|b-c\|_2^2-\|a-c\|_2^2$$</p>
+<p>$$=\Big\|t_{k+1}x^{k+1}-(t_{k+1}-1)x^k-x^*\Big\|_2^2-\Big\|t_{k+1}y^{k+1}-t_{k+1}x^k+x^k-x^*+(t_k-1)(x^k-x^{k-1})\Big\|_2^2$$</p>
+<p>$$=\|u_{k+1}\|_2^2-\|u_k\|_2^2$$</p>
+<p>So
+$$\frac2L\big(t_k^2V_k-t_{k+1}^2V_{k+1}\big)\ge\|u_{k+1}\|_2^2-\|u_k\|_2^2$$</p>
+<p>Set $a_k=\frac2Lt_k^2V_k,\ b_k=\|u_k\|_2^2,\ c=\|x^0-x^*\|_2^2$</p>
+<p>By lemma 6
+$$a_k-a_{k+1}\ge b_{k+1}-b_k$$
+$$a_k+b_k\ge a_{k+1}+b_{k+1}$$</p>
+<p>So $a_k+b_k$ decrease</p>
+<p>$a_1=\frac2Lt_1^2V_1,\ b_1=\|u_1\|_2^2=\|x^0-x^*\|_2^2$</p>
+<p>By lemma 5
+$$F(x^*)-F(x^1)\ge\frac L2\|x^1-x^0\|_2^2+L\langle x^0-x^*,\,x^1-x^0\rangle$$</p>
+<p>$$\iff \frac2L(-V_1)\ge\|x^1-x^*\|_2^2-\|x^0-x^*\|_2^2$$
+$$\frac2LV_1\le\|x^0-x^*\|_2^2-\|x^1-x^*\|_2^2$$
+$$\frac2LV_1+\|x^1-x^*\|_2^2\le\|x^0-x^*\|_2^2$$</p>
+<p>$$a_1+b_1\le c$$</p>
+<p>So $a_k\le a_k+b_k\le c$</p>
+<p>$$\frac2Lt_k^2V_k\le\|x^0-x^*\|_2^2$$</p>
+<blockquote>
+<p><strong>lemma 7</strong>
+$$t_k\ge\frac{k+1}{2}$$</p>
+</blockquote>
+<p>when $k=1,\ t_1=1$</p>
+<p>assume $k&gt;1,\ t_k\ge\frac{k+1}{2}$</p>
+<p>then
+$$t_{k+1}=\frac{1+\sqrt{1+4t_k^2}}{2}\ge\frac{1+\sqrt{1+(k+1)^2}}{2}\ge\frac{k+2}{2}\ge\frac{k+1}{2}$$</p>
+<p>So $t_k\ge\frac{k+1}{2}\quad\forall k$</p>
+<p>So
+$$\frac2Lt_k^2V_k\le\|x^0-x^*\|_2^2$$</p>
+<p>$$F(x^k)-F(x^*)\le\frac{L\|x^0-x^*\|_2^2}{2t_k^2}\le\frac{2L\|x^0-x^*\|_2^2}{(k+1)^2}$$</p>
+<p>So FISTA has worst‑case complexity result of $O(1/k^2)$</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://Zmj-ovo.github.io">Blog Author</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zmj-ovo.github.io/2026/08/12/FISTA/">https://zmj-ovo.github.io/2026/08/12/FISTA/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://Zmj-ovo.github.io" target="_blank">My Blog</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/08/06/ISTA/" title="ISTA"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">ISTA</div></div><div class="info-2"><div class="info-item-1">ISTA algorithm : Iterative Shrinkage‑Thresholding Algorithm Set $x\in\mathbb{R}^n\quad y\in\mathbb{R}^n\quad n\ll m\quad y=\phi x$ Given $y$ and $\phi$, we want to get $x$, if we use the LASSO regression model $$\mathrm{argmin}\ \|y-\phi x\|_2^2+\lambda\|x\|_1$$ We can use iteration $$x^{k+1}=\mathrm{prox}_{\beta\lambda\|\cdot\|_1}\left(x^{k}-2\beta\phi^T(\phi x^{k}-y)\right)$$ to solve it That is the ISTA algorithm, to derive this expression, we need to introduce the following concepts  Defi...</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="utterances-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Blog Author</div><div class="author-info-description">个人技术博客，记录学习与思考</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Zmj-ovo" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:mxz422@student.bham.ac.uk" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#FISTA"><span class="toc-number">1.</span> <span class="toc-text">FISTA</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Iterative-of-FISTA"><span class="toc-number">2.</span> <span class="toc-text">Iterative of FISTA</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/12/FISTA/" title="FISTA">FISTA</a><time datetime="2026-08-12T13:29:44.000Z" title="发表于 2026-08-12 21:29:44">2026-08-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/06/ISTA/" title="ISTA">ISTA</a><time datetime="2026-08-06T11:56:04.000Z" title="发表于 2026-08-06 19:56:04">2026-08-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/02/Analysis-Practice-Problems/" title="Analysis Practice Problems">Analysis Practice Problems</a><time datetime="2026-08-01T16:54:13.000Z" title="发表于 2026-08-02 00:54:13">2026-08-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/07/30/Vectors-and-Their-Linear-Operations/" title="Vectors and Their Linear Operations">Vectors and Their Linear Operations</a><time datetime="2026-07-30T13:15:49.000Z" title="发表于 2026-07-30 21:15:49">2026-07-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/07/28/%E9%AB%98%E4%BB%A3%E7%BB%83%E4%B9%A0%E9%A2%98/" title="高代练习题">高代练习题</a><time datetime="2026-07-28T12:24:55.000Z" title="发表于 2026-07-28 20:24:55">2026-07-28</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Blog Author</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.6.1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.6.1"></script><script src="/js/main.js?v=5.6.1"></script><div class="js-pjax"><script>(() => {
+  const changeScriptToMath = article => {
+    article.querySelectorAll('script[type^="math/tex"]').forEach(el => {
+      const display = /mode=display/.test(el.type)
+      const node = document.createElement(display ? 'div' : 'span')
+      node.textContent = display
+        ? `$$${el.textContent}$$`
+        : `$${el.textContent}$`
+      el.parentNode.replaceChild(node, el)
+    })
+  }
+
+  const loadMathjax = () => {
+    const article = document.getElementById('article-container')
+    if (!article || article.querySelector('.hbe-container')) return
+    changeScriptToMath(article)
+
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem',
+            'ui/lazy'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+          packages: {
+            '[+]': [
+              'ams',
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          lazyMargin: '200px',
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.typesetClear()
+      MathJax.typesetPromise([ article ])
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+  const getUtterancesTheme = theme => theme === 'dark' ? 'photon-dark' : 'github-light'
+
+  const loadUtterances = (el = document, key) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyUtterances = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const config = {
+      src: 'https://utteranc.es/client.js',
+      repo: 'Zmj-ovo/Zmj-ovo.github.io',
+      theme: getUtterancesTheme(document.documentElement.getAttribute('data-theme')),
+      crossorigin: 'anonymous',
+      async: true,
+      ...option,
+      'issue-term': isShuoshuo ? key : (option && option['issue-term']) || 'pathname'
+    }
+
+    const ele = document.createElement('script')
+    Object.entries(config).forEach(([key, value]) => ele.setAttribute(key, value))
+    el.querySelector('#utterances-wrap').appendChild(ele)
+  }
+
+  const changeUtterancesTheme = theme => {
+    const iframe = document.querySelector('#utterances-wrap iframe')
+    if (iframe) {
+      const message = {
+        type: 'set-theme',
+        theme: getUtterancesTheme(theme)
+      };
+      iframe.contentWindow.postMessage(message, 'https://utteranc.es')
+    }
+  }
+
+  btf.addGlobalFn('themeChange', changeUtterancesTheme, 'utterances')
+
+  if (isShuoshuo) {
+    'Utterances' === 'Utterances'
+      ? window.shuoshuoComment = { loadComment: loadUtterances }
+      : window.loadOtherComment = loadUtterances
+    return
+  }
+  
+  if ('Utterances' === 'Utterances' || !false) {
+    if (false) btf.loadComment(document.getElementById('utterances-wrap'), loadUtterances)
+    else loadUtterances()
+  } else {
+    window.loadOtherComment = loadUtterances
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
