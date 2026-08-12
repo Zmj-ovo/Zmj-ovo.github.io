@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zmj-ovo.github.io/img/butterfly-icon.png">
 <meta property="article:published_time" content="2026-08-12T13:29:44.000Z">
-<meta property="article:modified_time" content="2026-08-12T13:36:21.680Z">
+<meta property="article:modified_time" content="2026-08-12T13:49:58.417Z">
 <meta property="article:author" content="Blog Author">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://zmj-ovo.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
@@ -17,7 +17,7 @@
   "url": "https://zmj-ovo.github.io/2026/08/12/FISTA/",
   "image": "https://zmj-ovo.github.io/img/butterfly-icon.png",
   "datePublished": "2026-08-12T13:29:44.000Z",
-  "dateModified": "2026-08-12T13:36:21.680Z",
+  "dateModified": "2026-08-12T13:49:58.417Z",
   "author": [
     {
       "@type": "Person",
@@ -218,7 +218,7 @@
     color: #c8d6e5;
   }
 </style>
-<meta name="generator" content="Hexo 8.1.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">My Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">FISTA</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">FISTA</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-08-12T13:29:44.000Z" title="发表于 2026-08-12 21:29:44">2026-08-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-08-12T13:36:21.680Z" title="更新于 2026-08-12 21:36:21">2026-08-12</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="FISTA"><a href="#FISTA" class="headerlink" title="FISTA"></a>FISTA</h1><blockquote>
+<meta name="generator" content="Hexo 8.1.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">My Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">FISTA</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">FISTA</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-08-12T13:29:44.000Z" title="发表于 2026-08-12 21:29:44">2026-08-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-08-12T13:49:58.417Z" title="更新于 2026-08-12 21:49:58">2026-08-12</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="FISTA"><a href="#FISTA" class="headerlink" title="FISTA"></a>FISTA</h1><blockquote>
 <p><strong>Definition ($L$-smoothness).</strong> Let $L\ge0$. A function $f:E\to(-\infty,+\infty]$ is said to be $L$-smooth over a set $D\subseteq E$ if it is differentiable over $D$ and satisfies
 $$\|\nabla f(x)-\nabla f(y)\|\le L\|x-y\| \quad \forall x,y\in D$$</p>
 </blockquote>
@@ -305,7 +305,7 @@ $$\ge-\|x^0-x^*\|_2^2$$</p>
 <p>$$F(x^n)-F(x^*)\le\frac{L\|x^0-x^*\|_2^2}{2n}$$</p>
 <p>So ISTA has a worst‑case complexity result of $O(1/k)$.</p>
 <p>$\tilde{x}$ s.t. $F(\tilde{x})-F(x^*)\le\varepsilon$ is at most $\lceil C/\varepsilon\rceil$ step
-where $C=\dfrac{L\|x^0-x^*\|_2^2}{2n}$</p>
+where $C=\dfrac{L\|x^0-x^*\|_2^2}{2}$</p>
 <h1 id="Iterative-of-FISTA"><a href="#Iterative-of-FISTA" class="headerlink" title="Iterative of FISTA"></a>Iterative of FISTA</h1><p>Set $y^1=x^0,\ t_1=1$
 $$x^k=P_L(y^k)$$
 $$t_{k+1}=\frac{1+\sqrt{1+4t_k^2}}{2}$$
@@ -336,7 +336,7 @@ $$F(x^*)-F(x^{k+1})\ge\frac L2\|x^{k+1}-y^{k+1}\|_2^2+L\langle y^{k+1}-x^*,\,x^{
 $$=(t_{k+1}-1)V_k-t_{k+1}V_{k+1}\ge t_{k+1}\cdot\frac L2\|x^{k+1}-y^{k+1}\|_2^2+L\big[(t_{k+1}-1)(y^{k+1}-x^k)+(y^{k+1}-x^*)\big]\cdot(x^{k+1}-y^{k+1})$$</p>
 <p>$$\ge t_{k+1}\frac L2\|x^{k+1}-y^{k+1}\|_2^2+L(x^{k+1}-y^{k+1})\big[(t_{k+1}-1)(y^{k+1}-x^k)+(y^{k+1}-x^*)\big]$$</p>
 <p>$$=t_{k+1}\frac L2\|x^{k+1}-y^{k+1}\|_2^2+L(x^{k+1}-y^{k+1})\big(t_{k+1}y^{k+1}-t_{k+1}x^k+x^k-x^*\big)$$</p>
-<p>$$\iff \frac2L\Big[\big(t_{k+1}^2-t_{k+1}\big)V_k-t_{k+1}^2V_{k+1}\Big]\ge t_{k+1}^2\|x^{k+1}-y^{k+1}\|_2^2+2\big(t_{k+1}y^{k+1}-t_{k+1}x^k+x^k-x^*\big)$$</p>
+<p>$$\iff \frac2L\Big[\big(t_{k+1}^2-t_{k+1}\big)V_k-t_{k+1}^2V_{k+1}\Big]\ge t_{k+1}^2\|x^{k+1}-y^{k+1}\|_2^2+2t_{k+1}\big(t_{k+1}y^{k+1}-t_{k+1}x^k+x^k-x^*\big)\cdot(x^{k+1}-y^{k+1})$$</p>
 <p>LHS is $\displaystyle\frac2L\big(t_k^2V_k-t_{k+1}^2V_{k+1}\big)$</p>
 <p>RHS is $\displaystyle\|t_{k+1}x^{k+1}-t_{k+1}y^{k+1}\|_2^2+2\big(t_{k+1}x^{k+1}-t_{k+1}y^{k+1}\big)\big(t_{k+1}y^{k+1}-(t_{k+1}-1)x^k-x^*\big)$</p>
 <p>$$t_{k+1}y^{k+1}=t_{k+1}x^k+(t_k-1)(x^k-x^{k-1})$$</p>
@@ -344,7 +344,7 @@ $$=(t_{k+1}-1)V_k-t_{k+1}V_{k+1}\ge t_{k+1}\cdot\frac L2\|x^{k+1}-y^{k+1}\|_2^2+
 <p>$$\|b-a\|_2^2+2(b-a)\cdot(a-c)$$</p>
 <p>$$=\|b-a\|_2^2+2(b-a)\cdot(a-c)$$</p>
 <p>$$=\|b-c\|_2^2-\|a-c\|_2^2$$</p>
-<p>$$=\Big\|t_{k+1}x^{k+1}-(t_{k+1}-1)x^k-x^*\Big\|_2^2-\Big\|t_{k+1}y^{k+1}-t_{k+1}x^k+x^k-x^*+(t_k-1)(x^k-x^{k-1})\Big\|_2^2$$</p>
+<p>$$=\Big\|t_{k+1}x^{k+1}-(t_{k+1}-1)x^k-x^*\Big\|_2^2-\Big\|t_kx^k-(t_k-1)x^{k-1}-x^*\Big\|_2^2$$</p>
 <p>$$=\|u_{k+1}\|_2^2-\|u_k\|_2^2$$</p>
 <p>So
 $$\frac2L\big(t_k^2V_k-t_{k+1}^2V_{k+1}\big)\ge\|u_{k+1}\|_2^2-\|u_k\|_2^2$$</p>
@@ -353,7 +353,7 @@ $$\frac2L\big(t_k^2V_k-t_{k+1}^2V_{k+1}\big)\ge\|u_{k+1}\|_2^2-\|u_k\|_2^2$$</p>
 $$a_k-a_{k+1}\ge b_{k+1}-b_k$$
 $$a_k+b_k\ge a_{k+1}+b_{k+1}$$</p>
 <p>So $a_k+b_k$ decrease</p>
-<p>$a_1=\frac2Lt_1^2V_1,\ b_1=\|u_1\|_2^2=\|x^0-x^*\|_2^2$</p>
+<p>$a_1=\frac2Lt_1^2V_1,\ b_1=\|u_1\|_2^2=\|x^1-x^*\|_2^2$</p>
 <p>By lemma 5
 $$F(x^*)-F(x^1)\ge\frac L2\|x^1-x^0\|_2^2+L\langle x^0-x^*,\,x^1-x^0\rangle$$</p>
 <p>$$\iff \frac2L(-V_1)\ge\|x^1-x^*\|_2^2-\|x^0-x^*\|_2^2$$
@@ -367,7 +367,7 @@ $$\frac2LV_1+\|x^1-x^*\|_2^2\le\|x^0-x^*\|_2^2$$</p>
 $$t_k\ge\frac{k+1}{2}$$</p>
 </blockquote>
 <p>when $k=1,\ t_1=1$</p>
-<p>assume $k&gt;1,\ t_k\ge\frac{k+1}{2}$</p>
+<p>assume $k\ge1,\ t_k\ge\frac{k+1}{2}$</p>
 <p>then
 $$t_{k+1}=\frac{1+\sqrt{1+4t_k^2}}{2}\ge\frac{1+\sqrt{1+(k+1)^2}}{2}\ge\frac{k+2}{2}\ge\frac{k+1}{2}$$</p>
 <p>So $t_k\ge\frac{k+1}{2}\quad\forall k$</p>
