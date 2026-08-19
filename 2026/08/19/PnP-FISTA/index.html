@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>PnP-FISTA | My Blog</title><meta name="author" content="Blog Author"><meta name="copyright" content="Blog Author"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="$$\min_{x\in \mathbb R^n} (f(x))+(g(x))$$ $(f(x))$ smooth $(g(x))$ non‑smooth FISTA为 $$x_k&#x3D;\text{prox}_{\gamma g}\big(y_k-\gamma\nabla f(y_k)\big)$$ $$t_{k+1}&#x3D;\frac12\big(1+\sqrt{1+4t_k^2}\big)$$ $$y_">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>PnP-FISTA | My Blog</title><meta name="author" content="Blog Author"><meta name="copyright" content="Blog Author"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="PnP-FISTA$$\min_{x\in \mathbb R^n} f(x)+g(x)$$ $f(x)$ smooth $g(x)$ non‑smooth FISTA为 $$x_k&#x3D;\text{prox}_{\gamma g}\big(y_k-\gamma\nabla f(y_k)\big)$$ $$t_{k+1}&#x3D;\frac12\big(1+\sqrt{1+4t_k^2}\big)$$ $$y">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PnP-FISTA">
 <meta property="og:url" content="https://zmj-ovo.github.io/2026/08/19/PnP-FISTA/index.html">
 <meta property="og:site_name" content="My Blog">
-<meta property="og:description" content="$$\min_{x\in \mathbb R^n} (f(x))+(g(x))$$ $(f(x))$ smooth $(g(x))$ non‑smooth FISTA为 $$x_k&#x3D;\text{prox}_{\gamma g}\big(y_k-\gamma\nabla f(y_k)\big)$$ $$t_{k+1}&#x3D;\frac12\big(1+\sqrt{1+4t_k^2}\big)$$ $$y_">
+<meta property="og:description" content="PnP-FISTA$$\min_{x\in \mathbb R^n} f(x)+g(x)$$ $f(x)$ smooth $g(x)$ non‑smooth FISTA为 $$x_k&#x3D;\text{prox}_{\gamma g}\big(y_k-\gamma\nabla f(y_k)\big)$$ $$t_{k+1}&#x3D;\frac12\big(1+\sqrt{1+4t_k^2}\big)$$ $$y">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zmj-ovo.github.io/img/butterfly-icon.png">
 <meta property="article:published_time" content="2026-08-19T07:30:11.000Z">
-<meta property="article:modified_time" content="2026-08-19T07:42:29.100Z">
+<meta property="article:modified_time" content="2026-08-19T08:02:17.577Z">
 <meta property="article:author" content="Blog Author">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://zmj-ovo.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
@@ -17,7 +17,7 @@
   "url": "https://zmj-ovo.github.io/2026/08/19/PnP-FISTA/",
   "image": "https://zmj-ovo.github.io/img/butterfly-icon.png",
   "datePublished": "2026-08-19T07:30:11.000Z",
-  "dateModified": "2026-08-19T07:42:29.100Z",
+  "dateModified": "2026-08-19T08:02:17.577Z",
   "author": [
     {
       "@type": "Person",
@@ -198,7 +198,7 @@
 }</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
   title: 'PnP-FISTA',
   isHighlightShrink: false,
-  isToc: false,
+  isToc: true,
   pageType: 'post'
 }</script><style>
   #article-container blockquote {
@@ -218,8 +218,8 @@
     color: #c8d6e5;
   }
 </style>
-<meta name="generator" content="Hexo 8.1.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">My Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">PnP-FISTA</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">PnP-FISTA</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-08-19T07:30:11.000Z" title="发表于 2026-08-19 15:30:11">2026-08-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-08-19T07:42:29.100Z" title="更新于 2026-08-19 15:42:29">2026-08-19</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>$$\min_{x\in \mathbb R^n} (f(x))+(g(x))$$
-$(f(x))$ smooth $(g(x))$ non‑smooth</p>
+<meta name="generator" content="Hexo 8.1.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">My Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">PnP-FISTA</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">PnP-FISTA</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-08-19T07:30:11.000Z" title="发表于 2026-08-19 15:30:11">2026-08-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-08-19T08:02:17.577Z" title="更新于 2026-08-19 16:02:17">2026-08-19</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="PnP-FISTA"><a href="#PnP-FISTA" class="headerlink" title="PnP-FISTA"></a>PnP-FISTA</h1><p>$$\min_{x\in \mathbb R^n} f(x)+g(x)$$
+$f(x)$ smooth $g(x)$ non‑smooth</p>
 <p>FISTA为
 $$x_k=\text{prox}_{\gamma g}\big(y_k-\gamma\nabla f(y_k)\big)$$
 $$t_{k+1}=\frac12\big(1+\sqrt{1+4t_k^2}\big)$$
@@ -230,11 +230,11 @@ $$x_k=W\big(y_k-\gamma\nabla f(y_k)\big)$$</p>
 $$y_{k+1}=x_k+\frac{t_k-1}{t_{k+1}}(x_k-x_{k-1})$$</p>
 <p>$x\to W(x)x$ 其中 $W$ 由训练集 $X_g$ 生成，在此假设为线性算子
 $$x\to Wx$$</p>
-<p>为证明 PnP‑FISTA 的收敛不一定收敛，面设更一般化的 $\alpha$-PnP‑FISTA 形式
+<p>为证明 PnP‑FISTA 的收敛性，另设更一般化的 $\alpha$-PnP‑FISTA 形式
 $$x_k=W\big(y_k-\gamma\nabla f(y_k)\big)$$
 $$y_{k+1}=x_k+\alpha_k(x_k-x_{k-1})$$
 $$\lim_{k\to\infty}\alpha_k=1$$</p>
-<p>则 PnP‑FISTA 为 $\alpha$-PnP‑FISTA 一特例 $\alpha_k=\frac{t_k-1}{t_{k+1}}$</p>
+<p>则 PnP‑FISTA 为 $\alpha$-PnP‑FISTA 的一个特例 $\alpha_k=\frac{t_k-1}{t_{k+1}}$</p>
 <p><strong>proof</strong>
 $$\sqrt{1+4t_k^2}\ge 2t_k$$
 $$t_{k+1}\ge t_k+\frac12$$
@@ -242,36 +242,36 @@ So $t_k\ge\frac k2$ $\lim\limits_{k\to\infty}t_k=+\infty$</p>
 <p>$$\lim_{k\to\infty}\alpha_k=\lim_{k\to\infty}\frac{t_k-1}{t_{k+1}}
 =\lim_{k\to\infty}\frac{t_k-1}{\frac12\big(1+\sqrt{1+4t_k^2}\big)}
 =\lim_{k\to\infty}\frac{2\big(1-\frac{1}{t_k}\big)}{\frac{1}{t_k}+\sqrt{4+\frac{1}{t_k^2}}}=\frac{2}{2}=1$$</p>
-<p>设 $(f(x))=\frac12\|Ax-b\|^2$</p>
-<p>Assumption: $\sigma(W)\subset[0,1]$ 且 $\ker(A)\cap\mathrm{fix}(w)=\{0\}$
-即去噪器 $W$ 不会 某一方向的向量
-同时也不存在非零向量 $x$ 使 $A(x=0),\;Wx=x$ 即对代价无单影响却被 $W$ 保留</p>
+<p>设 $f(x)=\frac12\|Ax-b\|_2^2$</p>
+<p>Assumption: $\sigma(W)\subset[0,1]$ 且 $\ker(A)\cap\mathrm{fix}(W)=\{0\}$
+即去噪器 $W$ 不会放大任何方向的向量
+同时也不存在非零向量 $x$ 使 $Ax=0,\;Wx=x$ 即对代价无影响却被 $W$ 保留</p>
 <blockquote>
 <p><strong>lemma1.(Schur)</strong>
 For $A\in\mathbb C^{n\times n}$ with eigenvalues $\lambda_1\cdots\lambda_n$ $\exists$ a unitary matrix $U\in\mathbb C^{n\times n}$
-s.t. $U^TAU=T=[t_{ij}]$
+s.t. $U^*AU=T=[t_{ij}]$
 $T$ is upper triangular and $t_{ii}=\lambda_i\quad i=1\cdots n$</p>
 </blockquote>
 <p><strong>proof</strong>:
 对 $A$ 的特征值 $\lambda_1\cdots\lambda_n$ 找到 $\varepsilon_1$ 为 $\lambda_1$ 对应单位特征向量
-将将 $\varepsilon_1$ 扩为一组标准正交基 $\{\varepsilon_1,\alpha_2,\alpha_3\cdots\alpha_n\}$</p>
+将 $\varepsilon_1$ 扩为一组标准正交基 $\{\varepsilon_1,\alpha_2,\alpha_3\cdots\alpha_n\}$</p>
 <p>设 $U_1=(\varepsilon_1\;\alpha_2\;\cdots\alpha_n)$</p>
 <p>$$
-U_1^TAU_1=
+U_1^*AU_1=
 \begin{pmatrix}
-\varepsilon_1^T\\
-\alpha_2^T\\
+\varepsilon_1^*\\
+\alpha_2^*\\
 \vdots\\
-\alpha_n^T
+\alpha_n^*
 \end{pmatrix}
 \cdot
 (A\varepsilon_1,\;A\alpha_2\;\cdots A\alpha_n)
 =
 \begin{pmatrix}
-\varepsilon_1^T\\
-\alpha_2^T\\
+\varepsilon_1^*\\
+\alpha_2^*\\
 \vdots\\
-\alpha_n^T
+\alpha_n^*
 \end{pmatrix}
 \cdot
 (\lambda_1\varepsilon_1,\;A\alpha_2\;\cdots A\alpha_n)
@@ -300,7 +300,7 @@ $$</p>
 <p>So $|A_1-\lambda I|=(\lambda_2-\lambda)(\lambda_3-\lambda)\cdots(\lambda_n-\lambda)$
 $A_1$ 的特征值为 $\lambda_2\cdots\lambda_n$</p>
 <p>重复上述步骤得到
-$$U_2^TU_1^TAU_1U_2=
+$$U_2^*U_1^*AU_1U_2=
 \begin{bmatrix}
 \lambda_1 &amp; * &amp; *\\
 0 &amp; \lambda_2 &amp; *\\
@@ -308,7 +308,7 @@ $$U_2^TU_1^TAU_1U_2=
 \end{bmatrix}
 $$</p>
 <p>令 $U=U_1U_2\cdots U_{n-1}$ $U$ 为 unitary matrix，则
-$U^TAU=T$，$T$ is upper triangular and $t_{ii}=\lambda_i$</p>
+$U^*AU=T$，$T$ is upper triangular and $t_{ii}=\lambda_i$</p>
 <blockquote>
 <p><strong>lemma2.</strong>
 Let $A\in\mathbb C^{n\times n}$，$\forall \varepsilon&gt;0$ $\exists$ a matrix norm
@@ -317,7 +317,7 @@ $\rho(A)$ is the largest eigenvalue of $A$</p>
 </blockquote>
 <p><strong>proof</strong>
 By lemma1. $\exists$ unitary matrix $U$ and upper triangular matrix $\Delta$
-s.t. $A=U^T\Delta U$</p>
+s.t. $A=U^*\Delta U$</p>
 <p>Let $D_t=\mathrm{diag}(t,t^2,\cdots t^n)$</p>
 <p>$$D_t\Delta D_t^{-1}=
 \begin{bmatrix}
@@ -330,9 +330,9 @@ $$</p>
 <p>$\|\cdot\|_1$ is the maximum column sum</p>
 <p>So $\|D_t\Delta D_t^{-1}\|_1\le\rho(A)+\varepsilon$ for large enough $t$</p>
 <p>define the matrix norm $\|\cdot\|$ by
-$$\|B\|=\|D_t(U^TBU)D_t^{-1}\|_1=\|(UD_t^{-1})^{-1}B(UD_t^{-1})\|_1$$</p>
+$$\|B\|=\|D_t(U^*BU)D_t^{-1}\|_1=\|(UD_t^{-1})^{-1}B(UD_t^{-1})\|_1$$</p>
 <p>So
-$$\|A\|=\|D_tU^TAUD_t^{-1}\|_1
+$$\|A\|=\|D_tU^*AUD_t^{-1}\|_1
 =\|D_t\Delta D_t^{-1}\|_1\le\rho(A)+\varepsilon$$</p>
 <p>$\lambda$ is the eigenvalue of $A$，$\exists$ eigenvector $x\neq0$ s.t. $Ax=\lambda x$</p>
 <p>Set nonzero vector $y$，define $X=xy^T$</p>
@@ -351,7 +351,7 @@ s.t.
 $1^\circ\ \rho(R_\infty)&lt;1$
 $2^\circ\lim\limits_{k\to\infty}R_k=R_\infty$
 $3^\circ\bigcap\limits_{k=1}^\infty\mathrm{fix}(T_k)\neq\emptyset$
-Then , there exist an unique $z^*\in\mathbb R^d$ s.t. $\forall z_0\in\mathbb R^d$ the sequence $\{z_k\}_{k\ge0}$ generated via $z_{k+1}=T_k(z_k)$ converges linearly to $z^*$</p>
+Then, there exists a unique $z^*\in\mathbb R^d$ s.t. $\forall z_0\in\mathbb R^d$ the sequence $\{z_k\}_{k\ge0}$ generated via $z_{k+1}=T_k(z_k)$ converges linearly to $z^*$</p>
 </blockquote>
 <p><strong>proof</strong>:
 Fix $\beta&lt;1$ s.t. $\rho(R_\infty)&lt;\beta$</p>
@@ -380,7 +380,7 @@ $$\|R_k(z_k-z^*)\|_\beta\le\beta\cdot\|z_k-z^*\|_\beta$$</p>
 $$z^*=R_kz^*+s$$</p>
 <p>let $k\to\infty$ $z^*=R_\infty z^*+s$</p>
 <p>$$(I_d-R_\infty)z^*=s$$</p>
-<p>$\rho(R_\infty)&lt;1$ so $1$ is not the eigenvalue of $R_\infty$ so $I-R_\infty$ is nonsingular. and $z^*$ is unique</p>
+<p>$\rho(R_\infty)&lt;1$ so $1$ is not an eigenvalue of $R_\infty$ so $I-R_\infty$ is nonsingular, and $z^*$ is unique</p>
 <p>So $\bigcap\limits_{k=1}^\infty\mathrm{fix}(T_k)$ is singleton</p>
 <blockquote>
 <p><strong>Prop 1.</strong> Let $P\in\mathbb R^{n\times n}$ $\sigma(P)\subset[0,1)$, If $R\in\mathbb R^{2n\times2n}$ is defined to be
@@ -412,7 +412,7 @@ z_1
 $$</p>
 <p>So $2Pz_1-Pz_2=\lambda z_1$
 $z_1=\lambda z_2$</p>
-<p>If $\lambda=\frac12$ or $z_1=0$ then $(x=0)$ , So assume $\lambda\neq\frac12,\ z_1\neq0$</p>
+<p>If $\lambda=\frac12$ or $z_1=0$ then $x=0$, so assume $\lambda\neq\frac12,\ z_1\neq0$</p>
 <p>$$2Pz_1-P\cdot\frac{1}{\lambda}z_1=\lambda z_1$$
 $$2\lambda Pz_1-Pz_1=\lambda^2 z_1$$
 $$(2\lambda-1)Pz_1=\lambda^2 z_1$$
@@ -426,7 +426,7 @@ $$\lambda^2-2\mu\lambda+\mu=0$$</p>
 <p>$$|\lambda|=\sqrt{\mu^2+\mu-\mu^2}=\sqrt{\mu}&lt;1$$</p>
 <p>So $\rho(R)&lt;1$</p>
 <blockquote>
-<p><strong>Prop 2.</strong> Let $M\in S^n$ and $\sigma(M)\subset[0,1]$ Then $\|Mx\|_2=\|x\|_2$ iff $(Mx=x)$</p>
+<p><strong>Prop 2.</strong> Let $M\in S^n$ and $\sigma(M)\subset[0,1]$ Then $\|Mx\|_2=\|x\|_2$ iff $Mx=x$</p>
 </blockquote>
 <p><strong>proof</strong> $\Rightarrow$
 $M$ is symmetric matrix so $\exists$ orthogonal matrix
@@ -434,15 +434,15 @@ s.t. $M=Q\Lambda Q^T$ $\Lambda=\mathrm{diag}(\lambda_i)\ i=1\cdots n\ \lambda_
 <p>Set $y=Q^Tx$</p>
 <p>$$
 \begin{aligned}
-\|Mx\|_2^2&amp;=\|M^2x\|_2=x^TQ\Lambda^2Q^Tx\\
+\|Mx\|_2^2&amp;=x^TM^2x=x^TQ\Lambda^2Q^Tx\\
 &amp;=y^T\Lambda^2y\\
 &amp;=\sum_i\lambda_i^2y_i^2
 \le\sum_i y_i^2=\|y\|_2^2=\|Q^Tx\|_2^2=\|x\|_2^2
 \end{aligned}
 $$</p>
-<p>equality holds iff $\lambda_i=1$ or $(y=0)$</p>
-<p>$1^\circ\ (y=0)$ means $(x=0)$ and $M(x=0)$
-So $(Mx=x)$</p>
+<p>equality holds iff $\lambda_i=1$ whenever $y_i\neq0$</p>
+<p>$1^\circ\ y=0$ means $x=0$ and $Mx=0$
+So $Mx=x$</p>
 <p>$2^\circ\ \lambda_i=1$
 $$Mx=Q\Lambda Q^TQy=Q\Lambda y=Qy=x$$</p>
 <p>$\Leftarrow$ is obviously</p>
@@ -455,7 +455,7 @@ Then $\sigma(P_\gamma)\subset[0,1)$ for all $\gamma\in(0,1/\lambda_{\mathrm{max}
 <p><strong>proof</strong>
 Define $G_\gamma=I_n-\gamma A^TA\in S^n$ $\sigma(G_\gamma)\subset[0,1]$ for
 $0&lt;\gamma&lt;1/\lambda_{\mathrm{max}}(A^TA)$</p>
-<p>$\sigma(G_\gamma)=\{1-\gamma\lambda_i\}\quad \lambda_i=\sigma(A^TA)$</p>
+<p>$\sigma(G_\gamma)=\{1-\gamma\lambda_i\}\quad \lambda_i\in\sigma(A^TA)$</p>
 <p>$$0&lt;\gamma&lt;\frac{1}{\lambda_{\mathrm{max}}(A^TA)}$$</p>
 <p>$$0\ge-\gamma\lambda_i&gt;-\frac{\lambda_i}{\lambda_{\mathrm{max}}}$$</p>
 <p>$$1-\frac{\lambda_i}{\lambda_{\mathrm{max}}}&lt;1-\gamma\lambda_i\le1$$</p>
@@ -467,7 +467,7 @@ $0&lt;\gamma&lt;1/\lambda_{\mathrm{max}}(A^TA)$</p>
 <p>So $P_\gamma \sim G_\gamma^{\frac12}W G_\gamma^{\frac12}$</p>
 <p>Since $\sigma(W)\subset[0,1]$ so $P_\gamma$ is positive‑semidefinite</p>
 <p>$\sigma(P_\gamma)\subset[0,+\infty)$</p>
-<p>$$\rho(P_\gamma)=\rho(P_\gamma)\frac{\|x\|_2}{\|x\|_2}=\frac{\|P_\gamma x\|_2}{\|x\|_2}\le\max_{\|x\|_2=1}\|P_\gamma x\|_2$$</p>
+<p>$$\|P_\gamma\|_2=\rho(P_\gamma)=\max_{\|x\|_2=1}\|P_\gamma x\|_2$$</p>
 <p>We need prove $\forall\|x\|_2=1\quad\|P_\gamma x\|_2&lt;1$</p>
 <p>Since $W,\ G_\gamma\in S$ so $\|W\|_2=\rho(W)\le1$
 $\|G_\gamma\|_2=\rho(G_\gamma)\le1$</p>
@@ -488,7 +488,7 @@ $\|G_\gamma\|_2=\rho(G_\gamma)\le1$</p>
 <p>So $\sigma(P_\gamma)\subset[0,1)$</p>
 <blockquote>
 <p><strong>Theorem</strong>
-For the $\alpha$-PnP‑FISTA with $(f(x))=\frac12\|Ax-b\|_2^2$
+For the $\alpha$-PnP‑FISTA with $f(x)=\frac12\|Ax-b\|_2^2$
 $W$ and $A$ set satisfy assumption. Then the iterates exhibit global linear convergence for any $\gamma\in(0,1/\lambda_{\mathrm{max}}(A^TA))$</p>
 </blockquote>
 <p><strong>proof</strong>
@@ -510,7 +510,7 @@ $$z_k=\begin{pmatrix}x_k\\x_{k-1}\end{pmatrix}$$</p>
 <p>Since $\ker(A)\cap\mathrm{fix}(W)=\{0\}\ \gamma\in(0,1/\lambda_{\mathrm{max}}(A^TA))$</p>
 <p>by lemma4. $\rho(P_\gamma)&lt;1$ so $I-P_\gamma$ is nonsingular</p>
 <p>$$x^*=(I_n-P_\gamma)^{-1}q\quad z^*=\begin{pmatrix}x^*\\x^*\end{pmatrix}\in\mathbb R^{2n}$$</p>
-<p>$z_k=T_k(z_{k-1})$ $T_kz=R_kz+s\quad s=\binom{q}{0}\ R_k=\begin{pmatrix}(1+\alpha_k)P_\gamma &amp; -\alpha_kP_\gamma\\ I &amp; 0\end{pmatrix}$</p>
+<p>$z_k=T_k(z_{k-1})$ $T_kz=R_kz+s\quad s=\binom{q}{0},\ R_k=\begin{pmatrix}(1+\alpha_{k-1})P_\gamma &amp; -\alpha_{k-1}P_\gamma\\ I &amp; 0\end{pmatrix}$</p>
 <p>$$R_\infty=\begin{pmatrix}2P_\gamma &amp; -P_\gamma\\ I &amp; 0\end{pmatrix}$$</p>
 <p>by prop1. $\rho(R_\infty)&lt;1$</p>
 <p>$$\lim_{k\to\infty}R_k=R_\infty$$</p>
@@ -547,11 +547,11 @@ $$</p>
 <p>$$
 \begin{aligned}
 \mathrm{fix}(W_S)\cap\mathrm{fix}(G_\gamma)&amp;=\big(D^{\frac12}\mathrm{fix}(W_{\mathrm{NLM}})\big)\cap\big(D^{\frac12}\ker(A)\big)\\
-&amp;=C\cap\ker(A)=\{0\}
+&amp;=D^{\frac12}\big(\mathrm{fix}(W_{\mathrm{NLM}})\cap\ker(A)\big)=D^{\frac12}\{0\}=\{0\}
 \end{aligned}
 $$</p>
 <p>So by lemma4. $\sigma(P_\gamma)\subset[0,1)$</p>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://Zmj-ovo.github.io">Blog Author</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zmj-ovo.github.io/2026/08/19/PnP-FISTA/">https://zmj-ovo.github.io/2026/08/19/PnP-FISTA/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://Zmj-ovo.github.io" target="_blank">My Blog</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/08/12/FISTA/" title="FISTA"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">FISTA</div></div><div class="info-2"><div class="info-item-1">FISTA Definition ($L$-smoothness). Let $L\ge0$. A function $f:E\to(-\infty,+\infty]$ is said to be $L$-smooth over a set $D\subseteq E$ if it is differentiable over $D$ and satisfies $$\|\nabla f(x)-\nabla f(y)\|\le L\|x-y\| \quad \forall x,y\in D$$   lemma4 (descent lemma): Let $f:E\to(-\infty,\infty]$ be $L-$smooth function over a given convex set $D$. Then $$\forall x,y\in D \quad f(y)\le f(x)+\langle\nabla f(x),y-x\rangle+\frac{L}{2}\|x-y\|_2^2$$  proof Set $h(t)=f\big(x+t(y-x)\big)$ $$\i...</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="utterances-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Blog Author</div><div class="author-info-description">个人技术博客，记录学习与思考</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Zmj-ovo" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:mxz422@student.bham.ac.uk" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/19/PnP-FISTA/" title="PnP-FISTA">PnP-FISTA</a><time datetime="2026-08-19T07:30:11.000Z" title="发表于 2026-08-19 15:30:11">2026-08-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/12/FISTA/" title="FISTA">FISTA</a><time datetime="2026-08-12T13:29:44.000Z" title="发表于 2026-08-12 21:29:44">2026-08-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/06/ISTA/" title="ISTA">ISTA</a><time datetime="2026-08-06T11:56:04.000Z" title="发表于 2026-08-06 19:56:04">2026-08-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/02/Analysis-Practice-Problems/" title="Analysis Practice Problems">Analysis Practice Problems</a><time datetime="2026-08-01T16:54:13.000Z" title="发表于 2026-08-02 00:54:13">2026-08-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/07/30/Vectors-and-Their-Linear-Operations/" title="Vectors and Their Linear Operations">Vectors and Their Linear Operations</a><time datetime="2026-07-30T13:15:49.000Z" title="发表于 2026-07-30 21:15:49">2026-07-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Blog Author</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.6.1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.6.1"></script><script src="/js/main.js?v=5.6.1"></script><div class="js-pjax"><script>(() => {
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://Zmj-ovo.github.io">Blog Author</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zmj-ovo.github.io/2026/08/19/PnP-FISTA/">https://zmj-ovo.github.io/2026/08/19/PnP-FISTA/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://Zmj-ovo.github.io" target="_blank">My Blog</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/08/12/FISTA/" title="FISTA"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">FISTA</div></div><div class="info-2"><div class="info-item-1">FISTA Definition ($L$-smoothness). Let $L\ge0$. A function $f:E\to(-\infty,+\infty]$ is said to be $L$-smooth over a set $D\subseteq E$ if it is differentiable over $D$ and satisfies $$\|\nabla f(x)-\nabla f(y)\|\le L\|x-y\| \quad \forall x,y\in D$$   lemma4 (descent lemma): Let $f:E\to(-\infty,\infty]$ be $L-$smooth function over a given convex set $D$. Then $$\forall x,y\in D \quad f(y)\le f(x)+\langle\nabla f(x),y-x\rangle+\frac{L}{2}\|x-y\|_2^2$$  proof Set $h(t)=f\big(x+t(y-x)\big)$ $$\i...</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="utterances-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Blog Author</div><div class="author-info-description">个人技术博客，记录学习与思考</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Zmj-ovo" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:mxz422@student.bham.ac.uk" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PnP-FISTA"><span class="toc-number">1.</span> <span class="toc-text">PnP-FISTA</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/19/PnP-FISTA/" title="PnP-FISTA">PnP-FISTA</a><time datetime="2026-08-19T07:30:11.000Z" title="发表于 2026-08-19 15:30:11">2026-08-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/12/FISTA/" title="FISTA">FISTA</a><time datetime="2026-08-12T13:29:44.000Z" title="发表于 2026-08-12 21:29:44">2026-08-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/06/ISTA/" title="ISTA">ISTA</a><time datetime="2026-08-06T11:56:04.000Z" title="发表于 2026-08-06 19:56:04">2026-08-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/02/Analysis-Practice-Problems/" title="Analysis Practice Problems">Analysis Practice Problems</a><time datetime="2026-08-01T16:54:13.000Z" title="发表于 2026-08-02 00:54:13">2026-08-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/07/30/Vectors-and-Their-Linear-Operations/" title="Vectors and Their Linear Operations">Vectors and Their Linear Operations</a><time datetime="2026-07-30T13:15:49.000Z" title="发表于 2026-07-30 21:15:49">2026-07-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Blog Author</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.6.1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.6.1"></script><script src="/js/main.js?v=5.6.1"></script><div class="js-pjax"><script>(() => {
   const changeScriptToMath = article => {
     article.querySelectorAll('script[type^="math/tex"]').forEach(el => {
       const display = /mode=display/.test(el.type)
