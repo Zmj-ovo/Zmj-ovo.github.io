@@ -1,0 +1,453 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>CO—Primal dual algorithm | My Blog</title><meta name="author" content="Blog Author"><meta name="copyright" content="Blog Author"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="第1页 Theorem1. Complementary slackness Suppose $x\in M_p^{opt}\ \ \pi\in M_D^{opt}$ then $x\in M_p^{opt}\ \ \pi\in M_D^{opt}$ iff $$\forall i,j \quad \big(c_j-(A^\top\pi)_j\big)\cdot x_j&#x3D;0&#x3D;\pi_i\big((A">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CO—Primal dual algorithm">
+<meta property="og:url" content="https://zmj-ovo.github.io/2026/09/09/CO%E2%80%94Primal-dual-algorithm/index.html">
+<meta property="og:site_name" content="My Blog">
+<meta property="og:description" content="第1页 Theorem1. Complementary slackness Suppose $x\in M_p^{opt}\ \ \pi\in M_D^{opt}$ then $x\in M_p^{opt}\ \ \pi\in M_D^{opt}$ iff $$\forall i,j \quad \big(c_j-(A^\top\pi)_j\big)\cdot x_j&#x3D;0&#x3D;\pi_i\big((A">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zmj-ovo.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-09-08T17:15:30.000Z">
+<meta property="article:modified_time" content="2026-09-08T17:24:01.890Z">
+<meta property="article:author" content="Blog Author">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zmj-ovo.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "CO—Primal dual algorithm",
+  "url": "https://zmj-ovo.github.io/2026/09/09/CO%E2%80%94Primal-dual-algorithm/",
+  "image": "https://zmj-ovo.github.io/img/butterfly-icon.png",
+  "datePublished": "2026-09-08T17:15:30.000Z",
+  "dateModified": "2026-09-08T17:24:01.890Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Blog Author",
+      "url": "https://Zmj-ovo.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zmj-ovo.github.io/2026/09/09/CO%E2%80%94Primal-dual-algorithm/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'CO—Primal dual algorithm',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><style>
+  #article-container blockquote {
+    border-left: 4px solid #49b1f5;
+    background: #f0f6fc;
+    padding: 12px 20px;
+    margin: 16px 0;
+    border-radius: 0 8px 8px 0;
+    color: #3a3a3a;
+  }
+  #article-container blockquote p {
+    margin: 4px 0;
+  }
+  [data-theme=dark] #article-container blockquote {
+    background: #1a2430;
+    border-left-color: #5cbdf2;
+    color: #c8d6e5;
+  }
+</style>
+<meta name="generator" content="Hexo 8.1.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">My Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">CO—Primal dual algorithm</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">CO—Primal dual algorithm</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-09-08T17:15:30.000Z" title="发表于 2026-09-09 01:15:30">2026-09-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-09-08T17:24:01.890Z" title="更新于 2026-09-09 01:24:01">2026-09-09</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="第1页"><a href="#第1页" class="headerlink" title="第1页"></a>第1页</h1><blockquote>
+<p><strong>Theorem1. Complementary slackness</strong>
+Suppose $x\in M_p^{opt}\ \ \pi\in M_D^{opt}$ then $x\in M_p^{opt}\ \ \pi\in M_D^{opt}$ iff
+$$\forall i,j \quad \big(c_j-(A^\top\pi)_j\big)\cdot x_j=0=\pi_i\big((Ax)_i-b_i\big)$$</p>
+</blockquote>
+<p>proof
+By the rules of dualisation
+$$\min f(x)=c^\top x \qquad \max g(\pi)=b^\top\pi$$
+$$(Ax)_i=b_i \quad i\in I \qquad \pi_i\lessgtr0$$
+$$(Ax)_i\ge b_i \quad i\in \bar I \qquad \pi_i\ge0$$
+$$x_j\ge0 \quad j\in J \qquad (A^\top\pi)_j\le c_j$$
+$$x_j\ge0 \quad j\in \bar J \qquad (A^\top\pi)_j = c_j$$</p>
+<p>So $x_j\cdot\big(c_j-(A^\top\pi)_j\big)\ge0 \quad \pi_i\big((Ax)_i-b_i\big)\ge0$</p>
+<p>Set $u_j = x_j\cdot\big(c_j-(A^\top\pi)_j\big) \quad v_i = \pi_i\big((Ax)_i-b_i\big)$</p>
+<p>$$u=\sum_j u_j \quad v=\sum_i v_i$$</p>
+<p>$$
+\begin{align*}
+u+v&amp;=\sum_j x_j\cdot c_j -\sum_j x_j\cdot(A^\top\pi)_j +\sum_i \pi_i(Ax)_i -\sum_i\pi_i b_i \\
+&amp;=c^\top x -\pi^\top Ax +\pi^\top Ax -b^\top\pi \\
+&amp;=c^\top x -b^\top\pi
+\end{align*}
+$$</p>
+<p>So $x\in M_p^{opt},\ \pi\in M_D^{opt} \iff c^\top x =b^\top\pi \iff \forall i,j \ u_j=v_i=0$</p>
+<hr>
+<h1 id="第2页"><a href="#第2页" class="headerlink" title="第2页"></a>第2页</h1><p>To solve
+$$P:\quad \min f(x)=c^\top x$$
+$$s.t.\quad (Ax=b)$$
+$$x\ge0$$</p>
+<p>We have
+$$D:\quad \max g(\pi)=b^\top\pi$$
+$$A^\top\pi\le c$$</p>
+<p>Begin with initial a feasible solution of D $\pi_1$</p>
+<p>We can get a set
+$$J=\{j\mid (A^\top\pi)_j = c_j\}$$</p>
+<p>For $x_j$ s.t. $j\notin J$ set $x_j=0$ then the problem $P$ become
+$$P'\quad \min f(x)=c^\top x$$
+$$\sum_{j\in J} a_{ij}x_j =b_i \quad i\in\{1,\dots,m\}$$
+$$x_j\ge0 \quad j\in J$$</p>
+<p>Set new variable auxiliary $x_i^a$ then the restricted primal problem is
+$$RP:\quad \min \ell=\sum_{i=1}^m x_i^a$$
+$$s.t.\quad \sum_{j\in J} a_{ij}x_j +x_i^a =b_i \quad i\in\{1,\dots,m\}$$
+$$x_i^a \ge0 \quad i\in\{1,\dots,m\}$$
+$$x_j\ge0 \quad j\in J$$</p>
+<p>Since let $x_j=0,j\in J,\ x_i^a=b_i$ is a feasible solution of RP so $M_{RP}\ne\emptyset$
+and $\min\sum_i x_i^a \ge0$ so RP $\exists$ optimal solution</p>
+<p>And $\min\ell=0$ iff $P'$ has feasible solution</p>
+<p>Since $x_i^a\ge0 \quad \ell=0 \implies x_i^a=0 \implies \sum_{j\in J}a_{ij}x_j =b_i \implies$ feasible solution</p>
+<hr>
+<h1 id="第3页"><a href="#第3页" class="headerlink" title="第3页"></a>第3页</h1><p>So if $\min\ell=0$ then for $j\in \bar J$ $(Ax)_j\ge b$ then
+$$j\in \bar J$$
+$$\sum_{j\in J} a_{ij}x_j =b_i \quad i\in\{1,\dots,m\}$$
+$$j\notin J \quad x_j=0$$</p>
+<p>then let $\bar x=(x_j)$</p>
+<p>$$A\bar x=\left(\sum_{j\in J}a_{ij}x_j\right)=(b_i)=b$$</p>
+<p>So $\bar x\in M_p$ and $\pi_1\in M_D$ $\big((A^\top\pi)_j-c_j\big)x_j=0$</p>
+<p>Since when $j\in J\ (A^\top\pi)_j=c_j$ when $j\notin J\ x_j=0$</p>
+<p>and since $(Ax=b)$ so $\big((Ax)_i-b_i\big)\pi_i=0$</p>
+<p>So $\big((A^\top\pi)_j-c_j\big)x_j=0=\big((Ax)_i-b_i\big)\pi_i$</p>
+<p>by Theorem1. $\bar x,\ \pi_1$ is the optimal solution of $P$ and $D$</p>
+<p>So we want to find the $\min\ell=0$</p>
+<p>Set the dual problem of RP : DRP
+$$DRP:\quad \max b^\top\overline{\pi}$$
+$$s.t.\ (A^\top\overline{\pi})_j\le0 \quad j\in J \iff \begin{bmatrix}A^\top\\I\end{bmatrix}\overline{\pi}\le\begin{bmatrix}0\\1\end{bmatrix}$$</p>
+<p>Assume we can solve the DRP problem, the optimal solution is $\overline{\pi}$</p>
+<p>So by strong dual theorem</p>
+<p>$b^\top\overline{\pi}=\ell&gt;0$ (if $\ell=0$ then we get the optimal solution)</p>
+<p>then $\pi_2=\pi_1+\theta\overline{\pi}$</p>
+<p>$b^\top\pi_2 =b^\top\pi_1+\theta b^\top\overline{\pi} &gt;b^\top\pi_1,\ \theta$ should be positive</p>
+<p>And $A^\top\pi_2 =A^\top\pi_1+\theta A^\top\overline{\pi} \le A^\top\pi_1 \le C$ if $A^\top\overline{\pi}\le0$</p>
+<p>So $\pi_2$ is still the feasible solution of the problem $D$</p>
+<p>if $A^\top\overline{\pi}&gt;0$ we still want $\pi_2$ in the feasible space then we need
+$$\theta \le \frac{c_j-(A^\top\pi_1)_j}{(A^\top\overline{\pi})_j} \quad \text{if }(A^\top\overline{\pi})_j&gt;0 \ \ j\notin J$$</p>
+<p>So $\theta=\min\left\{ \frac{c_j-(A^\top\pi_1)_j}{(A^\top\overline{\pi})_j} \bigg| (A^\top\overline{\pi})_j&gt;0 \right\}$</p>
+<hr>
+<h1 id="第4页"><a href="#第4页" class="headerlink" title="第4页"></a>第4页</h1><p>For the case $\forall j\notin J\ (A^\top\overline{\pi})_j\le0$</p>
+<p>then let $\theta\to+\infty$ since $b^\top\overline{\pi}&gt;0$</p>
+<p>So $\pi(\theta)=\pi+\theta\overline{\pi}$ still is feasible solution and</p>
+<p>$b^\top\pi(\theta)=b^\top\pi+\theta b^\top\overline{\pi}\to +\infty$</p>
+<p>by weak dual theorem so $M_p=\emptyset$</p>
+<p>So we get the algorithm</p>
+<p>For $\min c^\top x$
+$$(Ax=b)$$
+$$x\ge0$$</p>
+<p>find dual problem feasible $\pi_k$</p>
+<p>Set $J=\{j\mid (A^\top\pi_k)_j=c_j\}$</p>
+<p>Solve RP $\min \ell=\sum_i x_i^a$
+$$\sum_{j\in J} a_{ij}x_j +x_i^a =b_i$$
+$$x_i^a \ge0$$
+$$x_j \ge0$$</p>
+<p>Get the optimal solution , if $\min\ell=0$ then that $x_j,j\in J$ is optimal for $P$, if not , find optimal solution of DRP
+$$\max w=\pi^\top b$$
+$$s.t.\ (A^\top\overline{\pi})_j \le0 \quad j\in J$$
+$$\overline{\pi}_i\le1 \quad i\in[1\cdots m]$$</p>
+<p>if $(A^\top\overline{\pi})_j\le0$ for $\forall j\notin J$ then stop $M_p=\emptyset$</p>
+<p>if not set
+$$\theta=\min\left\{ \frac{c_j-(A^\top\pi_k)_j}{(A^\top\overline{\pi})_j} \bigg|(A^\top\overline{\pi})_j&gt;0 \right\}$$</p>
+<p>and $\pi_{k+1}:=\pi_k+\theta\overline{\pi}$</p>
+<p>then go back</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://Zmj-ovo.github.io">Blog Author</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zmj-ovo.github.io/2026/09/09/CO%E2%80%94Primal-dual-algorithm/">https://zmj-ovo.github.io/2026/09/09/CO%E2%80%94Primal-dual-algorithm/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://Zmj-ovo.github.io" target="_blank">My Blog</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/08/19/PnP-FISTA/" title="PnP-FISTA"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">PnP-FISTA</div></div><div class="info-2"><div class="info-item-1">PnP-FISTA$$\min_{x\in \mathbb R^n} f(x)+g(x)$$ $f(x)$ smooth $g(x)$ non‑smooth FISTA为 $$x_k=\text{prox}_{\gamma g}\big(y_k-\gamma\nabla f(y_k)\big)$$ $$t_{k+1}=\frac12\big(1+\sqrt{1+4t_k^2}\big)$$ $$y_{k+1}=x_k+\frac{t_k-1}{t_{k+1}}(x_k-x_{k-1})$$ PnP‑FISTA 将 prox operator 变为由数据驱动的去噪器 $W$ $$x_k=W\big(y_k-\gamma\nabla f(y_k)\big)$$ $$t_{k+1}=\frac12\big(1+\sqrt{1+4t_k^2}\big)$$ $$y_{k+1}=x_k+\frac{t_k-1}{t_{k+1}}(x_k-x_{k-1})$$ $x\to W(x)x$ 其中 $W$ 由训练集 $X_g$ 生成，在此假设为线性算子 $$x\to Wx$$ 为证明 PnP‑FI...</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="utterances-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Blog Author</div><div class="author-info-description">个人技术博客，记录学习与思考</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Zmj-ovo" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:mxz422@student.bham.ac.uk" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC1%E9%A1%B5"><span class="toc-number">1.</span> <span class="toc-text">第1页</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC2%E9%A1%B5"><span class="toc-number">2.</span> <span class="toc-text">第2页</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC3%E9%A1%B5"><span class="toc-number">3.</span> <span class="toc-text">第3页</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC4%E9%A1%B5"><span class="toc-number">4.</span> <span class="toc-text">第4页</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/09/CO%E2%80%94Primal-dual-algorithm/" title="CO—Primal dual algorithm">CO—Primal dual algorithm</a><time datetime="2026-09-08T17:15:30.000Z" title="发表于 2026-09-09 01:15:30">2026-09-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/19/PnP-FISTA/" title="PnP-FISTA">PnP-FISTA</a><time datetime="2026-08-19T07:30:11.000Z" title="发表于 2026-08-19 15:30:11">2026-08-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/12/FISTA/" title="FISTA">FISTA</a><time datetime="2026-08-12T13:29:44.000Z" title="发表于 2026-08-12 21:29:44">2026-08-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/06/ISTA/" title="ISTA">ISTA</a><time datetime="2026-08-06T11:56:04.000Z" title="发表于 2026-08-06 19:56:04">2026-08-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/02/Analysis-Practice-Problems/" title="Analysis Practice Problems">Analysis Practice Problems</a><time datetime="2026-08-01T16:54:13.000Z" title="发表于 2026-08-02 00:54:13">2026-08-02</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Blog Author</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.6.1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.6.1"></script><script src="/js/main.js?v=5.6.1"></script><div class="js-pjax"><script>(() => {
+  const changeScriptToMath = article => {
+    article.querySelectorAll('script[type^="math/tex"]').forEach(el => {
+      const display = /mode=display/.test(el.type)
+      const node = document.createElement(display ? 'div' : 'span')
+      node.textContent = display
+        ? `$$${el.textContent}$$`
+        : `$${el.textContent}$`
+      el.parentNode.replaceChild(node, el)
+    })
+  }
+
+  const loadMathjax = () => {
+    const article = document.getElementById('article-container')
+    if (!article || article.querySelector('.hbe-container')) return
+    changeScriptToMath(article)
+
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem',
+            'ui/lazy'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+          packages: {
+            '[+]': [
+              'ams',
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          lazyMargin: '200px',
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.typesetClear()
+      MathJax.typesetPromise([ article ])
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+  const getUtterancesTheme = theme => theme === 'dark' ? 'photon-dark' : 'github-light'
+
+  const loadUtterances = (el = document, key) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyUtterances = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const config = {
+      src: 'https://utteranc.es/client.js',
+      repo: 'Zmj-ovo/Zmj-ovo.github.io',
+      theme: getUtterancesTheme(document.documentElement.getAttribute('data-theme')),
+      crossorigin: 'anonymous',
+      async: true,
+      ...option,
+      'issue-term': isShuoshuo ? key : (option && option['issue-term']) || 'pathname'
+    }
+
+    const ele = document.createElement('script')
+    Object.entries(config).forEach(([key, value]) => ele.setAttribute(key, value))
+    el.querySelector('#utterances-wrap').appendChild(ele)
+  }
+
+  const changeUtterancesTheme = theme => {
+    const iframe = document.querySelector('#utterances-wrap iframe')
+    if (iframe) {
+      const message = {
+        type: 'set-theme',
+        theme: getUtterancesTheme(theme)
+      };
+      iframe.contentWindow.postMessage(message, 'https://utteranc.es')
+    }
+  }
+
+  btf.addGlobalFn('themeChange', changeUtterancesTheme, 'utterances')
+
+  if (isShuoshuo) {
+    'Utterances' === 'Utterances'
+      ? window.shuoshuoComment = { loadComment: loadUtterances }
+      : window.loadOtherComment = loadUtterances
+    return
+  }
+  
+  if ('Utterances' === 'Utterances' || !false) {
+    if (false) btf.loadComment(document.getElementById('utterances-wrap'), loadUtterances)
+    else loadUtterances()
+  } else {
+    window.loadOtherComment = loadUtterances
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
