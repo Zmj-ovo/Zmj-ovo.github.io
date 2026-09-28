@@ -1,0 +1,475 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>CO—αβ algorithm | My Blog</title><meta name="author" content="Blog Author"><meta name="copyright" content="Blog Author"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Co-αβ algorithmFor the balance transportation problem $\sum_{i}a_{i}&#x3D;\sum_{j}b_{j}$ $$P:\quad \min \sum_{i&#x3D;1}^{m}\sum_{j&#x3D;1}^{n} c_{ij}x_{ij}$$ $$s.t.\quad \sum_{j&#x3D;1}^{n} x_{ij}&#x3D;a_i \quad i\in \{1\cdot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CO—αβ algorithm">
+<meta property="og:url" content="https://zmj-ovo.github.io/2026/09/28/CO%E2%80%94%CE%B1%CE%B2-algorithm/index.html">
+<meta property="og:site_name" content="My Blog">
+<meta property="og:description" content="Co-αβ algorithmFor the balance transportation problem $\sum_{i}a_{i}&#x3D;\sum_{j}b_{j}$ $$P:\quad \min \sum_{i&#x3D;1}^{m}\sum_{j&#x3D;1}^{n} c_{ij}x_{ij}$$ $$s.t.\quad \sum_{j&#x3D;1}^{n} x_{ij}&#x3D;a_i \quad i\in \{1\cdot">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zmj-ovo.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-09-28T06:52:34.000Z">
+<meta property="article:modified_time" content="2026-09-28T07:06:03.521Z">
+<meta property="article:author" content="Blog Author">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zmj-ovo.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "CO—αβ algorithm",
+  "url": "https://zmj-ovo.github.io/2026/09/28/CO%E2%80%94%CE%B1%CE%B2-algorithm/",
+  "image": "https://zmj-ovo.github.io/img/butterfly-icon.png",
+  "datePublished": "2026-09-28T06:52:34.000Z",
+  "dateModified": "2026-09-28T07:06:03.521Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Blog Author",
+      "url": "https://Zmj-ovo.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zmj-ovo.github.io/2026/09/28/CO%E2%80%94%CE%B1%CE%B2-algorithm/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'CO—αβ algorithm',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><style>
+  #article-container blockquote {
+    border-left: 4px solid #49b1f5;
+    background: #f0f6fc;
+    padding: 12px 20px;
+    margin: 16px 0;
+    border-radius: 0 8px 8px 0;
+    color: #3a3a3a;
+  }
+  #article-container blockquote p {
+    margin: 4px 0;
+  }
+  [data-theme=dark] #article-container blockquote {
+    background: #1a2430;
+    border-left-color: #5cbdf2;
+    color: #c8d6e5;
+  }
+</style>
+<meta name="generator" content="Hexo 8.1.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">My Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">CO—αβ algorithm</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">CO—αβ algorithm</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-09-28T06:52:34.000Z" title="发表于 2026-09-28 14:52:34">2026-09-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-09-28T07:06:03.521Z" title="更新于 2026-09-28 15:06:03">2026-09-28</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Co-αβ-algorithm"><a href="#Co-αβ-algorithm" class="headerlink" title="Co-αβ algorithm"></a>Co-αβ algorithm</h1><p>For the balance transportation problem $\sum_{i}a_{i}=\sum_{j}b_{j}$</p>
+<p>$$P:\quad \min \sum_{i=1}^{m}\sum_{j=1}^{n} c_{ij}x_{ij}$$
+$$s.t.\quad \sum_{j=1}^{n} x_{ij}=a_i \quad i\in \{1\cdots m\}$$
+$$\sum_{i=1}^{m} x_{ij}=b_j \quad j\in \{1\cdots n\}$$
+$$x_{ij}\ge 0$$</p>
+<p>the dual problem is</p>
+<p>$$DP:\quad \max \sum_{i=1}^{m} a_i\alpha_i +\sum_{j=1}^{n} b_j\beta_j$$
+$$\alpha_i+\beta_j \le c_{ij} \quad i\in \{1\cdots m\}\quad j\in \{1\cdots n\}$$</p>
+<p>Set the initial solution of the dual problem as</p>
+<p>$$\alpha_i=0 \quad i\in \{1,\cdots m\}$$
+$$\beta_j=\min\limits_{i} c_{ij} \quad j\in \{1,\cdots n\}$$</p>
+<p>By the rule of prime dual algorithm we set the set</p>
+<p>$$IJ=\{(i,j)\in I\times J \mid \alpha_i+\beta_j = c_{ij}\}$$</p>
+<p>And we set the restricted primal</p>
+<p>$$RP:\quad \min \mathcal{l}=\sum_{i=1}^{m+n} x_i^a$$</p>
+<p>$$s.t.\quad \sum_{\substack{j:(i,j)\in IJ}} x_{ij}+x_i^a =a_i \quad i\in \{1\cdots m\}$$</p>
+<p>$$\sum_{\substack{i:(i,j)\in IJ}} x_{ij}+x_{m+j}^a =b_j \quad j\in \{1\cdots n\}$$</p>
+<p>$$x_i^a \ge0 \quad i\in \{1\cdots m+n\}$$
+$$x_{ij}\ge0$$</p>
+<p>Same as prime dual algorithm. If the RP $\min \mathcal{l}=0$, then we get the optimal solution, else, we want to do iteration and let the objective function of DP bigger. We change the RP into a max-flow problem to help us solve it.</p>
+<p>$$\sum_{i=1}^{m}\sum_{\substack{j:(i,j)\in IJ}} x_{ij}+\sum_{j=1}^{n}\sum_{\substack{i:(i,j)\in IJ}} x_{ij}+\sum_{i=1}^{m}x_i^a+\sum_{j=1}^{n}x_{m+j}^a=\sum_{i}a_i+\sum_{j}b_j$$</p>
+<p>$$\mathcal{l}=\sum_{i=1}^{m+n}x_i^a=\sum_{i}a_i+\sum_{j}b_j -2\sum_{IJ}x_{ij}$$</p>
+<p>Since $\sum a_i,\sum b_j$ is constant, so equivalent to $\max \mathcal{l}=\sum_{IJ}x_{ij}$</p>
+<p>The equal problem is</p>
+<p>$$RP'\quad \max \mathcal{l}=\sum_{IJ}x_{ij}$$</p>
+<p>$$s.t.\quad \sum_{\substack{j:(i,j)\in IJ}} x_{ij} \le a_i \quad i\in \{1,\cdots,m\}$$</p>
+<p>$$\sum_{\substack{i:(i,j)\in IJ}} x_{ij} \le b_j \quad j\in \{1,\cdots,n\}$$</p>
+<p>$$x_{ij}\ge0 \quad (i,j)\in IJ$$</p>
+<p>Let $x_{ij}=f(i,j) \quad \forall(i,j)\in IJ$ and the network like</p>
+<p>$$f(s,i)=\sum_{\substack{j:(i,j)\in IJ}} x_{ij} \quad i\in I,\qquad f(j,t)=\sum_{\substack{i:(i,j)\in IJ}} x_{ij} \quad j\in J$$</p>
+<p>The network has a source $s$ and a sink $t$: for every $i\in I$ an arc $s\to A_i$ of capacity $a_i$, for every $(i,j)\in IJ$ an arc $A_i\to B_j$ of capacity $+\infty$, for every $j\in J$ an arc $B_j\to t$ of capacity $b_j$:</p>
+<p>$$s\xrightarrow{\ a_i\ }A_i\xrightarrow{\ \infty\ }B_j\xrightarrow{\ b_j\ }t \qquad ((i,j)\in IJ)$$</p>
+<p>$$\begin{array}{ccccccc}
+s &amp; \xrightarrow{\ a_1\ } &amp; A_1 &amp; \xrightarrow{\ \infty\ } &amp; B_1 &amp; \xrightarrow{\ b_1\ } &amp; t\\
+&amp; &amp; \vdots &amp; &amp; \vdots &amp; &amp; \\
+s &amp; \xrightarrow{\ a_m\ } &amp; A_m &amp; \xrightarrow{\ \infty\ } &amp; B_n &amp; \xrightarrow{\ b_n\ } &amp; t
+\end{array}$$</p>
+<p>Note the middle arcs run over all $(i,j)\in IJ$, not only over $i=j$.</p>
+<p>The RP’ and the max-flow problem in this network are equivalent</p>
+<p>proof:</p>
+<p>$$\mathcal{l}=\sum_{IJ}x_{ij}=\sum_{IJ}f(i,j)=\sum_{i\in I}\left(\sum_{\substack{j:(i,j)\in IJ}}f(i,j)\right)=\sum_{i\in I}f(s,i)=v(f)$$</p>
+<p>so the objective function are same</p>
+<p>now prove if $x_{ij}$ is feasible solution in RP’ then it is feasible in the network</p>
+<p>If $i\in I$ then $f(s,i)=\sum_{\substack{j:(i,j)\in IJ}}x_{ij}\le a_i$, if $j\in J$ then $f(j,t)=\sum_{\substack{i:(i,j)\in IJ}}x_{ij}\le b_j$</p>
+<p>So the capacity constraints are satisfied and we have</p>
+<p>$$\forall i\in I \quad f(s,i)=\sum_{\substack{j:(i,j)\in IJ}}x_{ij}=\sum_{\substack{j:(i,j)\in IJ}}f(i,j)$$</p>
+<p>$$\forall j\in J \quad f(j,t)=\sum_{\substack{i:(i,j)\in IJ}}x_{ij}=\sum_{\substack{i:(i,j)\in IJ}}f(i,j)$$</p>
+<p>So the conservation law are satisfied . So it is a feasible solution in the max-flow problem</p>
+<p>now prove a feasible solution in the max-flow problem is a feasible solution in RP’</p>
+<p>$$\sum_{\substack{j:(i,j)\in IJ}}x_{ij}=\sum_{\substack{j:(i,j)\in IJ}}f(i,j)=f(s,i)\le a_i \quad \forall i\in I$$</p>
+<p>$$\sum_{\substack{i:(i,j)\in IJ}}x_{ij}=\sum_{\substack{i:(i,j)\in IJ}}f(i,j)=f(j,t)\le b_j \quad \forall j\in J$$</p>
+<p>So two problem are equivalent</p>
+<p>Also $\mathcal{l}=0$ means</p>
+<p>$$\mathcal{l}=\sum_{i}a_i+\sum_{j}b_j -2v(f)=0 \iff v(f)=\sum_{i\in I}a_i$$</p>
+<p>So we can use Ford and Fulkerson algorithm to solve the max flow problem and get optimal solution $f(i,j)$ then</p>
+<p>$1^\circ$ If the optimal solution s.t. $f(s,i)=a_i$ for $\forall i\in I$ then the optimal solution $x=x_{ij}$ has been found</p>
+<p>$$x_{ij}=
+\begin{cases}
+f(i,j) &amp; \text{if }(i,j)\in IJ\\
+0 &amp; \text{else}
+\end{cases}$$</p>
+<p>$2^\circ$ else we need the dual restricted problem primal set optimal solution $(\bar{\alpha},\bar{\beta})$ and use it to update $(\alpha,\beta)$</p>
+<p>To find $(\bar{\alpha},\bar{\beta})$, define</p>
+<p>$$I^*=\{i\in I \mid i \text{ is labelled in last iteration}\}$$</p>
+<p>$$J^*=\{j\in J \mid j \text{ is labelled in last iteration}\}$$</p>
+<p>By the rules of Ford-Fulkerson algorithm,</p>
+<p>$$i\in I^* \Rightarrow j\in J^* \quad \forall(i,j)\in IJ$$</p>
+<p>If $(i,j)\in IJ$, $i\notin I^*$, $j\in J^*$ then $f(i,j)=0$</p>
+<p>then</p>
+<p>$$\bar{\alpha}_i=
+\begin{cases}
+1 &amp; :i\in I^*\\
+-1 &amp; :i\notin I^*
+\end{cases}$$
+$$\bar{\beta}_j=
+\begin{cases}
+-1 &amp; j\in J^*\\
+1 &amp; j\notin J^*
+\end{cases}$$</p>
+<p>is the optimal solution of DRP</p>
+<p>proof:</p>
+<p>$$DRP:\quad \max \sum_{i=1}^{m} a_i\alpha_i +\sum_{j=1}^{n} b_j\beta_j =W(\alpha_i,\beta_j)$$</p>
+<p>$$s.t.\quad \alpha_i+\beta_j \le0 \quad (i,j)\in IJ$$</p>
+<p>$$\alpha_i \le1 \quad i\in I$$</p>
+<p>$$\beta_j \le1 \quad j\in J$$</p>
+<p>Since if $i\in I^* \Rightarrow j\in J^*$ so $\alpha_i+\beta_j \le0 \quad (i,j)\in IJ$</p>
+<p>$\Rightarrow (\bar{\alpha},\bar{\beta})$ is feasible solution for DRP</p>
+<p>$$W(\bar{\alpha},\bar{\beta})=\sum_{i\in I^*}a_i -\sum_{i\notin I^*}a_i -\sum_{j\in J^*}b_j +\sum_{j\notin J^*}b_j$$</p>
+<p>Below, $\sum_{I^*}$ means $\sum_{i\in I^*}$ and $\sum_{\overline{I^*}}$ means $\sum_{i\notin I^*}$, and similarly for $J^*$:</p>
+<p>$$
+\begin{align*}
+\mathcal{l}&amp;=\sum_{i}a_i+\sum_{j}b_j -2\sum_{IJ}x_{ij}\\
+&amp;=\sum_{i}a_i+\sum_{j}b_j -2\sum_{IJ}f(i,j)\\
+&amp;=\sum_{i}a_i+\sum_{j}b_j -2\left(\sum_{I^*}\sum_{J^*}f(i,j)+\sum_{I^*}\sum_{\overline{J^*}}f(i,j)+\sum_{\overline{I^*}}\sum_{J^*}f(i,j)+\sum_{\overline{I^*}}\sum_{\overline{J^*}}f(i,j)\right)\\
+&amp;=\sum_{i}a_i+\sum_{j}b_j -2\left(\sum_{I^*}\sum_{J^*}f(i,j)+\sum_{\overline{I^*}}\sum_{\overline{J^*}}f(i,j)\right)\\
+&amp;=\sum_{i}a_i+\sum_{j}b_j -2\left(\sum_{J^*}b_j+\sum_{\overline{I^*}}a_i\right)\\
+&amp;=\sum_{I^*}a_i+\sum_{\overline{I^*}}a_i+\sum_{J^*}b_j+\sum_{\overline{J^*}}b_j -2\sum_{J^*}b_j -2\sum_{\overline{I^*}}a_i\\
+&amp;=\sum_{\overline{I^*}}a_i -\sum_{I^*}a_i +\sum_{\overline{J^*}}b_j -\sum_{J^*}b_j
+\end{align*}
+$$</p>
+<p>So $\mathcal{l}=W(\bar{\alpha},\bar{\beta})$, so $(\bar{\alpha},\bar{\beta})$ is optimal solution</p>
+<p>Then we need update $\alpha_i,\beta_j$</p>
+<p>$$
+\begin{align*}
+\theta&amp;=\min\left\{\frac{c_{ij}-\alpha_i-\beta_j}{2}\mid \overline{\alpha}_i+\overline{\beta}_j&gt;0\right\}\\
+&amp;=\min\left\{\frac{c_{ij}-\alpha_i-\beta_j}{2}\mid i\in I^*,\ j\notin J^*\right\}
+\end{align*}
+$$</p>
+<p>So</p>
+<p>$$\alpha_i=\alpha_i+\theta \bar{\alpha}_i=
+\begin{cases}
+\alpha_i+\theta &amp; i\in I^*\\
+\alpha_i-\theta &amp; i\notin I^*
+\end{cases}$$</p>
+<p>$$\beta_j=\beta_j+\theta \bar{\beta}_j=
+\begin{cases}
+\beta_j-\theta &amp; j\in J^*\\
+\beta_j+\theta &amp; j\notin J^*
+\end{cases}$$</p>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://Zmj-ovo.github.io">Blog Author</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zmj-ovo.github.io/2026/09/28/CO%E2%80%94%CE%B1%CE%B2-algorithm/">https://zmj-ovo.github.io/2026/09/28/CO%E2%80%94%CE%B1%CE%B2-algorithm/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://Zmj-ovo.github.io" target="_blank">My Blog</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/09/15/CO%E2%80%94Ford-and-Fulkerson-algorithm/" title="CO—Ford and Fulkerson algorithm"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">CO—Ford and Fulkerson algorithm</div></div><div class="info-2"><div class="info-item-1">The Ford and Fulkerson Algorithm Definition. augmenting path For a network $(N=(V,E,s,t,b))$ and a flow $f$, an augmenting path is an $s$-$t$ path in the undirected graph from $(V,E)$ and follow properties $1^\circ,2^\circ$. $1^\circ$ A forward arc $(i,j)$: $f(i,j)&lt;b(i,j)$ $2^\circ$ A backward arc $(i,j)$: $f(i,j)&gt;0$  So by augmenting path we can find a new flow whose value greater than the current flow. So each iteration can increase $\delta$ flow. $$ \delta=\min_{(i,j)} \begin{cases} ...</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="utterances-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Blog Author</div><div class="author-info-description">个人技术博客，记录学习与思考</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Zmj-ovo" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:mxz422@student.bham.ac.uk" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Co-%CE%B1%CE%B2-algorithm"><span class="toc-number">1.</span> <span class="toc-text">Co-αβ algorithm</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/28/CO%E2%80%94%CE%B1%CE%B2-algorithm/" title="CO—αβ algorithm">CO—αβ algorithm</a><time datetime="2026-09-28T06:52:34.000Z" title="发表于 2026-09-28 14:52:34">2026-09-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/15/CO%E2%80%94Ford-and-Fulkerson-algorithm/" title="CO—Ford and Fulkerson algorithm">CO—Ford and Fulkerson algorithm</a><time datetime="2026-09-15T13:32:48.000Z" title="发表于 2026-09-15 21:32:48">2026-09-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/09/CO%E2%80%94Primal-dual-algorithm/" title="CO—Primal dual algorithm">CO—Primal dual algorithm</a><time datetime="2026-09-08T17:15:30.000Z" title="发表于 2026-09-09 01:15:30">2026-09-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/12/FISTA/" title="FISTA">FISTA</a><time datetime="2026-08-12T13:29:44.000Z" title="发表于 2026-08-12 21:29:44">2026-08-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/06/ISTA/" title="ISTA">ISTA</a><time datetime="2026-08-06T11:56:04.000Z" title="发表于 2026-08-06 19:56:04">2026-08-06</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Blog Author</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.6.1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.6.1"></script><script src="/js/main.js?v=5.6.1"></script><div class="js-pjax"><script>(() => {
+  const changeScriptToMath = article => {
+    article.querySelectorAll('script[type^="math/tex"]').forEach(el => {
+      const display = /mode=display/.test(el.type)
+      const node = document.createElement(display ? 'div' : 'span')
+      node.textContent = display
+        ? `$$${el.textContent}$$`
+        : `$${el.textContent}$`
+      el.parentNode.replaceChild(node, el)
+    })
+  }
+
+  const loadMathjax = () => {
+    const article = document.getElementById('article-container')
+    if (!article || article.querySelector('.hbe-container')) return
+    changeScriptToMath(article)
+
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem',
+            'ui/lazy'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+          packages: {
+            '[+]': [
+              'ams',
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          lazyMargin: '200px',
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.typesetClear()
+      MathJax.typesetPromise([ article ])
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+  const getUtterancesTheme = theme => theme === 'dark' ? 'photon-dark' : 'github-light'
+
+  const loadUtterances = (el = document, key) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyUtterances = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const config = {
+      src: 'https://utteranc.es/client.js',
+      repo: 'Zmj-ovo/Zmj-ovo.github.io',
+      theme: getUtterancesTheme(document.documentElement.getAttribute('data-theme')),
+      crossorigin: 'anonymous',
+      async: true,
+      ...option,
+      'issue-term': isShuoshuo ? key : (option && option['issue-term']) || 'pathname'
+    }
+
+    const ele = document.createElement('script')
+    Object.entries(config).forEach(([key, value]) => ele.setAttribute(key, value))
+    el.querySelector('#utterances-wrap').appendChild(ele)
+  }
+
+  const changeUtterancesTheme = theme => {
+    const iframe = document.querySelector('#utterances-wrap iframe')
+    if (iframe) {
+      const message = {
+        type: 'set-theme',
+        theme: getUtterancesTheme(theme)
+      };
+      iframe.contentWindow.postMessage(message, 'https://utteranc.es')
+    }
+  }
+
+  btf.addGlobalFn('themeChange', changeUtterancesTheme, 'utterances')
+
+  if (isShuoshuo) {
+    'Utterances' === 'Utterances'
+      ? window.shuoshuoComment = { loadComment: loadUtterances }
+      : window.loadOtherComment = loadUtterances
+    return
+  }
+  
+  if ('Utterances' === 'Utterances' || !false) {
+    if (false) btf.loadComment(document.getElementById('utterances-wrap'), loadUtterances)
+    else loadUtterances()
+  } else {
+    window.loadOtherComment = loadUtterances
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
