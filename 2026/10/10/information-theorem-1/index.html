@@ -1,0 +1,537 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>information theorem 1 | My Blog</title><meta name="author" content="Blog Author"><meta name="copyright" content="Blog Author"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Information theory  Definition. The entropy of a random variable X with a probability mass function $p(x)$ is defined by $$H(x) &#x3D; -\sum_{x} p(x) \log_2 p(x)$$   Definition. Let $X$ be a discrete r.v.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="information theorem 1">
+<meta property="og:url" content="https://zmj-ovo.github.io/2026/10/10/information-theorem-1/index.html">
+<meta property="og:site_name" content="My Blog">
+<meta property="og:description" content="Information theory  Definition. The entropy of a random variable X with a probability mass function $p(x)$ is defined by $$H(x) &#x3D; -\sum_{x} p(x) \log_2 p(x)$$   Definition. Let $X$ be a discrete r.v.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zmj-ovo.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-10-10T11:52:24.000Z">
+<meta property="article:modified_time" content="2026-10-10T12:12:37.242Z">
+<meta property="article:author" content="Blog Author">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zmj-ovo.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "information theorem 1",
+  "url": "https://zmj-ovo.github.io/2026/10/10/information-theorem-1/",
+  "image": "https://zmj-ovo.github.io/img/butterfly-icon.png",
+  "datePublished": "2026-10-10T11:52:24.000Z",
+  "dateModified": "2026-10-10T12:12:37.242Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Blog Author",
+      "url": "https://Zmj-ovo.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zmj-ovo.github.io/2026/10/10/information-theorem-1/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'information theorem 1',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'post'
+}</script><style>
+  #article-container blockquote {
+    border-left: 4px solid #49b1f5;
+    background: #f0f6fc;
+    padding: 12px 20px;
+    margin: 16px 0;
+    border-radius: 0 8px 8px 0;
+    color: #3a3a3a;
+  }
+  #article-container blockquote p {
+    margin: 4px 0;
+  }
+  [data-theme=dark] #article-container blockquote {
+    background: #1a2430;
+    border-left-color: #5cbdf2;
+    color: #c8d6e5;
+  }
+</style>
+<meta name="generator" content="Hexo 8.1.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">My Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">information theorem 1</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">information theorem 1</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-10-10T11:52:24.000Z" title="发表于 2026-10-10 19:52:24">2026-10-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-10-10T12:12:37.242Z" title="更新于 2026-10-10 20:12:37">2026-10-10</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>Information theory</p>
+<blockquote>
+<p><strong>Definition.</strong> The entropy of a random variable X with a probability mass function $p(x)$ is defined by</p>
+<p>$$H(x) = -\sum_{x} p(x) \log_2 p(x)$$</p>
+</blockquote>
+<blockquote>
+<p><strong>Definition.</strong> Let $X$ be a discrete r.v. with pmf $P_X(x), x \in \mathcal{X}$. For the event $X=x$, the self-information is</p>
+<p>$$I(x) = -\log P_X(x)$$</p>
+</blockquote>
+<p>The entropy is the average of the self-information</p>
+<p>$$H(x) = -\sum_{x \in \mathcal{X}} P_X(x) \cdot \log_2 P_X(x) = E\left[\log_2 \frac{1}{P_X(x)}\right]$$</p>
+<blockquote>
+<p><strong>Remark.</strong>
+$1^\circ$ $I(x) \ge 0$, since $0 \le P_X(x) \le 1$</p>
+<p>$2^\circ$ $H(X) \le \log \vert{}\mathcal{X}\vert{}$</p>
+</blockquote>
+<p><strong>Proof.</strong></p>
+<p>$\log$ is convex function and $H(x) = E\left[\log_2 \frac{1}{P_X(x)}\right]$</p>
+<p>By Jensen inequality</p>
+<p>$$E\left[\log_2 \frac{1}{P_X(x)}\right] \le \log_2 \left( E\left[\frac{1}{P_X(x)}\right] \right) = \log_2 \left( \sum_{x \in \mathcal{X}} P_X(x) \cdot \frac{1}{P_X(x)} \right) = \log_2 \vert{}\mathcal{X}\vert{}$$</p>
+<p>$3^\circ$ let $X = \begin{pmatrix} 1 &amp; 0 \\ p &amp; 1-p \end{pmatrix}$, $H(x) = -p \log_2 p - (1-p) \log_2 (1-p)$</p>
+<hr>
+<p>$4^\circ$ $H(X)$ depends on the pmf of X</p>
+<p>$5^\circ$ $H(X)$ is a concave function of $P_X$, proof need conditional entropy</p>
+<blockquote>
+<p><strong>Definition.</strong> joint entropy $H(X, Y)$ of a pair of discrete r.v. $X, Y$ with joint distribution $p(x, y)$ is defined as</p>
+<p>$$H(X, Y) = -\sum_{x}\sum_{y} p(x, y) \log p(x, y) = E\left[\log \frac{1}{p(X,Y)}\right]$$</p>
+</blockquote>
+<blockquote>
+<p><strong>Definition.</strong> the conditional entropy $H(Y\vert{}X)$ is defined as</p>
+<p>$$H(Y\vert{}X) = \sum_{x} p(x) \cdot H(Y\vert{}X=x) = -\sum_{x} p(x) \cdot \sum_{y} p(y\vert{}x) \log p(y\vert{}x) = -\sum_{x}\sum_{y} p(x, y) \log p(y\vert{}x) = E\left[\log \frac{1}{p(Y\vert{}X)}\right]$$</p>
+</blockquote>
+<blockquote>
+<p><strong>Theorem 1.</strong> $H(X,Y) = H(X) + H(Y\vert{}X)$</p>
+</blockquote>
+<p><strong>Proof.</strong></p>
+<p>$$H(X,Y) = \sum_{x}\sum_{y} p(x,y) \log \frac{1}{p(x,y)} = -\sum_{x}\sum_{y} p(x,y) \log (p(x) \cdot p(y\vert{}x))$$</p>
+<p>$$= -\sum_{x}\sum_{y} p(x,y) \log p(x) - \sum_{x}\sum_{y} p(x,y) \log p(y\vert{}x)$$</p>
+<p>$$= H(X) + H(Y\vert{}X)$$</p>
+<p>So $H(X_1 \dots X_n) = \sum_{i=1}^n H(X_i \vert{} X_1 \dots X_{i-1})$</p>
+<hr>
+<blockquote>
+<p><strong>Theorem 2.</strong> $H(X\vert{}Y) \le H(X)$</p>
+</blockquote>
+<p><strong>Proof.</strong></p>
+<p>$$H(X\vert{}Y) - H(X) = -\sum_{x}\sum_{y} p(x,y) \log p(x\vert{}y) + \sum_{x} p(x) \log p(x)$$</p>
+<p>$$= \sum_{x}\sum_{y} p(x,y) \log p(x) - \sum_{x}\sum_{y} p(x,y) \log p(x\vert{}y)$$</p>
+<p>$$= \sum_{x}\sum_{y} p(x,y) \log \frac{p(x)}{p(x\vert{}y)} = \sum_{x}\sum_{y} p(x,y) \log \frac{p(x)p(y)}{p(x,y)}$$</p>
+<p>since $\log z \le z - 1$</p>
+<p>$$\le \sum_{x}\sum_{y} p(x,y) \left( \frac{p(x)p(y)}{p(x,y)} - 1 \right) = \sum_{x}\sum_{y} p(x)p(y) - \sum_{x}\sum_{y} p(x,y) = 1 - 1 = 0$$</p>
+<p>So $H(X\vert{}Y) \le H(X)$</p>
+<blockquote>
+<p><strong>Theorem 3.</strong> $H(X)$ is concave of the probability</p>
+</blockquote>
+<p><strong>Proof.</strong></p>
+<p>Let $X_1 \sim P_1, X_2 \sim P_2$. $\theta \in \{1, 2\}$ s.t. $P(\theta=1) = \lambda$, $P(\theta=2) = 1-\lambda$</p>
+<p>define $Z = X_\theta$ by theorem 2</p>
+<p>$$H(Z) \ge H(Z\vert{}\theta)$$</p>
+<p>$Z = \lambda X_1 + (1-\lambda) X_2$ so the probability of Z is $\lambda P_1 + (1-\lambda) P_2$</p>
+<p>So $H(\lambda P_1 + (1-\lambda) P_2) \ge \lambda H(P_1) + (1-\lambda) H(P_2)$</p>
+<hr>
+<blockquote>
+<p><strong>Definition (KL distance).</strong> KL distance between two pmf $p(x), q(x)$ is defined as</p>
+<p>$$D(p\vert{}\vert{}q) = \sum_{x} p(x) \log \frac{p(x)}{q(x)}$$</p>
+</blockquote>
+<p>$$D(p\vert{}\vert{}q) = -\sum_{x} p(x) \ln \frac{q(x)}{p(x)} \ge -\sum_{x} p(x) \left( \frac{q(x)}{p(x)} - 1 \right) = -\sum_{x} (q(x) - p(x)) = 0$$</p>
+<blockquote>
+<p><strong>Definition.</strong> $D(p(x,y) \vert{}\vert{} p(x)p(y)) = \sum_{x}\sum_{y} p(x,y) \log \frac{p(x,y)}{p(x)p(y)}$</p>
+</blockquote>
+<p>By the proof of theorem 2</p>
+<p>$$I(X; Y) = D(p(x,y) \vert{}\vert{} p(x)p(y)) \ge 0$$</p>
+<p>$$I(X; Y) = H(X) - H(X\vert{}Y) = H(Y) - H(Y\vert{}X) = H(X) + H(Y) - H(X,Y)$$</p>
+<p>if X, Y independent $I(X; Y) = 0$</p>
+<blockquote>
+<p><strong>Theorem 2.</strong> Chain rule for information</p>
+<p>$$I(X_1, X_2 \dots X_n; Y) = \sum_{i=1}^n I(X_i; Y \vert{} X_1 \dots X_{i-1})$$</p>
+</blockquote>
+<p><strong>Proof.</strong></p>
+<p>$$I(X_1, X_2 \dots X_n; Y) = H(X_1, X_2 \dots X_n) - H(X_1, X_2 \dots X_n \vert{} Y)$$</p>
+<p>$$= \sum_{i=1}^n H(X_i \vert{} X_1 \dots X_{i-1}) - \sum_{i=1}^n H(X_i \vert{} X_1 \dots X_{i-1}, Y)$$</p>
+<p>$$= \sum_{i=1}^n I(X_i; Y \vert{} X_1 \dots X_{i-1})$$</p>
+<blockquote>
+<p><strong>Theorem 3.</strong> (Jensen’s inequality)</p>
+<p>If f is a convex function and X is r.v.</p>
+<p>$$E(f(X)) \ge f(E(X))$$</p>
+<p>and if f is strictly convex then equality holds means $X = E(X) \Rightarrow X$ is constant</p>
+</blockquote>
+<p><strong>Proof.</strong></p>
+<p>Assume for $k-1$ $P_1 f(x_1) + \dots + P_{k-1} f(x_{k-1}) \ge f(P_1 x_1 + \dots + P_{k-1} x_{k-1})$, then $p_i' = \frac{p_i}{1-p_k}$</p>
+<p>$$\sum_{i=1}^k p_i f(x_i) = p_k f(x_k) + (1-p_k) \sum_{i=1}^{k-1} p_i' f(x_i)$$</p>
+<p>$$\ge p_k f(x_k) + (1-p_k) f\left(\sum_{i=1}^{k-1} p_i' x_i\right)$$</p>
+<p>$$\ge f\left( p_k x_k + (1-p_k) \sum_{i=1}^{k-1} p_i' x_i \right) = f\left( \sum_{i=1}^k p_i x_i \right)$$</p>
+<hr>
+<blockquote>
+<p><strong>Theorem 4.</strong></p>
+<p>Let p, q be two pmf, then $D(p\vert{}\vert{}q) \ge 0$ with an equality if $p(x) = q(x) \quad \forall x \in \mathcal{X}$</p>
+</blockquote>
+<p><strong>Proof.</strong></p>
+<p>$$D(p\vert{}\vert{}q) = \sum_{x} p(x) \log \frac{p(x)}{q(x)} = -\sum_{x} p(x) \log \frac{q(x)}{p(x)} \ge -\log \left( \sum_{x} q(x) \right) = 0$$</p>
+<p>by Jensen inequality</p>
+<p>So $I(X; Y) = D(p(x,y) \vert{}\vert{} p(x)p(y)) \ge 0$</p>
+<blockquote>
+<p><strong>Theorem 5.</strong></p>
+<p>$$H(X) \le \log \vert{}\mathcal{X}\vert{}$$</p>
+</blockquote>
+<p><strong>Proof.</strong></p>
+<p>set $u(x) = \frac{1}{\vert{}\mathcal{X}\vert{}}$</p>
+<p>$$D(p\vert{}\vert{}u) = \sum_{x} p(x) \log \frac{p(x)}{u(x)} = \sum_{x} p(x) \log p(x) + \sum_{x} p(x) \log \vert{}\mathcal{X}\vert{}$$</p>
+<p>$$= \log \vert{}\mathcal{X}\vert{} - H(X) \ge 0$$</p>
+<p>So $H(X) \le \log \vert{}\mathcal{X}\vert{}$</p>
+<blockquote>
+<p><strong>Theorem 6.</strong> Log Sum Inequality</p>
+<p>$$\sum_{i=1}^n a_i \log \frac{a_i}{b_i} \ge \left( \sum_{i=1}^n a_i \right) \log \frac{\sum_{i=1}^n a_i}{\sum_{i=1}^n b_i}$$</p>
+</blockquote>
+<p><strong>Proof.</strong></p>
+<p>$t \log t$ is convex function, let $\alpha_i = \frac{b_i}{\sum b_i}$ then by Jensen Inequality</p>
+<p>$$f\left(\sum_{i=1}^n \alpha_i t_i\right) \le \sum_{i=1}^n \alpha_i f(t_i)$$</p>
+<p>let $t_i = \frac{a_i}{b_i}$</p>
+<p>$$\left( \sum \frac{a_i}{\sum b_i} \right) \log \left( \frac{\sum a_i}{\sum b_i} \right) \le \sum_{i=1}^n \frac{b_i}{\sum b_i} \frac{a_i}{b_i} \log \frac{a_i}{b_i}$$</p>
+<p>$$\Rightarrow \left( \sum a_i \right) \log \left( \frac{\sum a_i}{\sum b_i} \right) \le \sum_{i=1}^n a_i \log \frac{a_i}{b_i}$$</p>
+<hr>
+<blockquote>
+<p><strong>Theorem 7.</strong></p>
+<p>Convexity of Relative Entropy</p>
+<p>$(p_1, q_1) \quad (p_2, q_2) \quad 0 \le \lambda \le 1$</p>
+<p>$$D(\lambda p_1 + (1-\lambda) p_2 \vert{}\vert{} \lambda q_1 + (1-\lambda) q_2) \le \lambda D(p_1 \vert{}\vert{} q_1) + (1-\lambda) D(p_2 \vert{}\vert{} q_2)$$</p>
+</blockquote>
+<p><strong>Proof.</strong></p>
+<p>$$\sum_{x} [\lambda p_1(x) + (1-\lambda) p_2(x)] \log \frac{\lambda p_1(x) + (1-\lambda) p_2(x)}{\lambda q_1(x) + (1-\lambda) q_2(x)}$$</p>
+<p>$$\le \sum_{x} \lambda p_1(x) \log \frac{\lambda p_1(x)}{\lambda q_1(x)} + (1-\lambda) p_2(x) \log \frac{(1-\lambda) p_2(x)}{(1-\lambda) q_2(x)}$$</p>
+<p>$$= \lambda \sum_{x} p_1(x) \log \frac{p_1(x)}{q_1(x)} + (1-\lambda) \sum_{x} p_2(x) \log \frac{p_2(x)}{q_2(x)}$$</p>
+<p>$$= \lambda D(p_1 \vert{}\vert{} q_1) + (1-\lambda) D(p_2 \vert{}\vert{} q_2)$$</p>
+<blockquote>
+<p><strong>Theorem 8.</strong> Convexity of Mutual Information</p>
+<p>(1) Concave of $p(x)$ for fixed $p(y\vert{}x)$
+(2) Convex of $p(y\vert{}x)$ for fixed $p(x)$</p>
+</blockquote>
+<p><strong>Proof.</strong></p>
+<p>(1)</p>
+<p>$$I(X; Y) = H(Y) - H(Y\vert{}X)$$</p>
+<p>$$H(Y\vert{}X) = \sum_{x} p(x) \cdot H(Y\vert{}X=x) \text{, since } p(y\vert{}x) \text{ is fix so } H(Y\vert{}X=x) \text{ is fix}$$</p>
+<p>So $H(Y\vert{}X)$ is the linear combination of $p(x)$</p>
+<p>$$H(Y) = \sum_{y} p(y) \log \frac{1}{p(y)} \text{, } p(y) = \sum_{x} p(x) p(y\vert{}x) \text{ so } p(y) \text{ is linear combination of } p(x)$$</p>
+<p>$H(Y)$ is concave for $p(y)$ so is concave for $p(x)$</p>
+<p>So $I(X; Y)$ is concave for $p(x)$</p>
+<p>(2) $I(X; Y) = D(p(x,y) \vert{}\vert{} p(x)p(y))$</p>
+<p>$\forall p_0(y\vert{}x), p_1(y\vert{}x) \quad p_\lambda(y\vert{}x) = \lambda p_0(y\vert{}x) + (1-\lambda) p_1(y\vert{}x) \quad \lambda \in (0,1)$</p>
+<p>$$p_\lambda(x,y) = p(x) \cdot p_\lambda(y\vert{}x) = p(x) \cdot (\lambda p_0(y\vert{}x) + (1-\lambda) p_1(y\vert{}x)) = \lambda p_0(x,y) + (1-\lambda) p_1(x,y)$$</p>
+<p>$$p_\lambda(x) p_\lambda(y) = p(x) \cdot \sum_{x} p_\lambda(x,y) = p(x) \cdot \sum_{x} p(x) \cdot p_\lambda(y\vert{}x) = p(x) \cdot (\lambda p_0(y) + (1-\lambda) p_1(y))$$</p>
+<p>$$I_\lambda(X; Y) = D(\lambda p_0(x,y) + (1-\lambda) p_1(x,y) \vert{}\vert{} \lambda p(x)p_0(y) + (1-\lambda) p(x)p_1(y)) \le \lambda I_0 + (1-\lambda) I_1$$</p>
+<hr>
+<blockquote>
+<p><strong>Definition.</strong> Markov Chain</p>
+<p>r.v. X Y Z s.t. $p(x,y,z) = p(x) p(y\vert{}x) p(z\vert{}y)$</p>
+<p>$$p(x,y,z) = p(y) \cdot p(x,z\vert{}y) = p(y) \cdot p(x\vert{}y) \cdot p(z\vert{}y)$$</p>
+<p>$$\Rightarrow p(x,z\vert{}y) = p(x\vert{}y) \cdot p(z\vert{}y)$$</p>
+</blockquote>
+<blockquote>
+<p><strong>Theorem 9.</strong> (Data Processing Inequality)</p>
+<p>$X \rightarrow Y \rightarrow Z$ is a Markov Chain. Then $I(X; Y) \ge I(X; Z)$</p>
+</blockquote>
+<p><strong>Proof.</strong></p>
+<p>$$I(X; Y, Z) = I(X; Z) + I(X; Y\vert{}Z) = I(X; Y) + I(X; Z\vert{}Y)$$</p>
+<p>Since $p(x,z\vert{}y) = p(x\vert{}y) \cdot p(z\vert{}y)$ so $I(X; Z\vert{}Y) = 0$</p>
+<p>and $I(X; Y\vert{}Z) \ge 0$ so</p>
+<p>$$I(X; Y) \ge I(X; Z)$$</p>
+<blockquote>
+<p><strong>Corollary 1.</strong> if $Z = g(Y)$ then $X \rightarrow Y \rightarrow g(Y)$</p>
+<p>$$I(X; Y) \ge I(X; g(Y))$$</p>
+</blockquote>
+<blockquote>
+<p><strong>Corollary 2.</strong> if $X \rightarrow Y \rightarrow Z$ then</p>
+<p>$$I(X; Y\vert{}Z) \le I(X; Y)$$</p>
+</blockquote>
+<p><strong>Proof.</strong> $I(X; Y\vert{}Z) + I(X; Z) = I(X; Y)$</p>
+<p>and $I(X; Z) \ge 0$ so $I(X; Y\vert{}Z) \le I(X; Y)$</p>
+<blockquote>
+<p><strong>Definition.</strong> sufficient statistic</p>
+<p>For Markov Chain $\theta \rightarrow X \rightarrow T(X)$ if</p>
+<p>$I(\theta; T(X)) = I(\theta; X)$ then T is sufficient statistic</p>
+<p>which $I(\theta; X \vert{} T(X)) = 0 \Rightarrow \theta \rightarrow T(X) \rightarrow X$ is Markov Chain</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://Zmj-ovo.github.io">Blog Author</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zmj-ovo.github.io/2026/10/10/information-theorem-1/">https://zmj-ovo.github.io/2026/10/10/information-theorem-1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://Zmj-ovo.github.io" target="_blank">My Blog</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/10/01/independent-system/" title="independent system"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">independent system</div></div><div class="info-2"><div class="info-item-1">Independence set systems Definition. $S=(X,\mathcal{F})$ is called independence system if  $X$ is finite set (ground set) $\mathcal{F}$ is a collection of subset then $\forall A\in\mathcal{F}$ under inclusion which means $A\in\mathcal{F}\ A'\subseteq A \Rightarrow A'\in\mathcal{F}$    Theorem1. Let $S=(E,\mathcal{F})$ be independent system, then the following are equivalent (A): $\forall w:E\to\mathbb{R}_{\ge0}$. GREEDY correctly solves the problem (B): $\forall F,F'\in\mathcal{F}$ if $|F'|=|...</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="utterances-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Blog Author</div><div class="author-info-description">个人技术博客，记录学习与思考</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Zmj-ovo" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:mxz422@student.bham.ac.uk" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/10/10/information-theorem-1/" title="information theorem 1">information theorem 1</a><time datetime="2026-10-10T11:52:24.000Z" title="发表于 2026-10-10 19:52:24">2026-10-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/10/01/independent-system/" title="independent system">independent system</a><time datetime="2026-10-01T09:43:54.000Z" title="发表于 2026-10-01 17:43:54">2026-10-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/28/CO%E2%80%94%CE%B1%CE%B2-algorithm/" title="CO—αβ algorithm">CO—αβ algorithm</a><time datetime="2026-09-28T06:52:34.000Z" title="发表于 2026-09-28 14:52:34">2026-09-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/15/CO%E2%80%94Ford-and-Fulkerson-algorithm/" title="CO—Ford and Fulkerson algorithm">CO—Ford and Fulkerson algorithm</a><time datetime="2026-09-15T13:32:48.000Z" title="发表于 2026-09-15 21:32:48">2026-09-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/09/CO%E2%80%94Primal-dual-algorithm/" title="CO—Primal dual algorithm">CO—Primal dual algorithm</a><time datetime="2026-09-08T17:15:30.000Z" title="发表于 2026-09-09 01:15:30">2026-09-09</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Blog Author</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.6.1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.6.1"></script><script src="/js/main.js?v=5.6.1"></script><div class="js-pjax"><script>(() => {
+  const changeScriptToMath = article => {
+    article.querySelectorAll('script[type^="math/tex"]').forEach(el => {
+      const display = /mode=display/.test(el.type)
+      const node = document.createElement(display ? 'div' : 'span')
+      node.textContent = display
+        ? `$$${el.textContent}$$`
+        : `$${el.textContent}$`
+      el.parentNode.replaceChild(node, el)
+    })
+  }
+
+  const loadMathjax = () => {
+    const article = document.getElementById('article-container')
+    if (!article || article.querySelector('.hbe-container')) return
+    changeScriptToMath(article)
+
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem',
+            'ui/lazy'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+          packages: {
+            '[+]': [
+              'ams',
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          lazyMargin: '200px',
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.typesetClear()
+      MathJax.typesetPromise([ article ])
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+  const getUtterancesTheme = theme => theme === 'dark' ? 'photon-dark' : 'github-light'
+
+  const loadUtterances = (el = document, key) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyUtterances = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const config = {
+      src: 'https://utteranc.es/client.js',
+      repo: 'Zmj-ovo/Zmj-ovo.github.io',
+      theme: getUtterancesTheme(document.documentElement.getAttribute('data-theme')),
+      crossorigin: 'anonymous',
+      async: true,
+      ...option,
+      'issue-term': isShuoshuo ? key : (option && option['issue-term']) || 'pathname'
+    }
+
+    const ele = document.createElement('script')
+    Object.entries(config).forEach(([key, value]) => ele.setAttribute(key, value))
+    el.querySelector('#utterances-wrap').appendChild(ele)
+  }
+
+  const changeUtterancesTheme = theme => {
+    const iframe = document.querySelector('#utterances-wrap iframe')
+    if (iframe) {
+      const message = {
+        type: 'set-theme',
+        theme: getUtterancesTheme(theme)
+      };
+      iframe.contentWindow.postMessage(message, 'https://utteranc.es')
+    }
+  }
+
+  btf.addGlobalFn('themeChange', changeUtterancesTheme, 'utterances')
+
+  if (isShuoshuo) {
+    'Utterances' === 'Utterances'
+      ? window.shuoshuoComment = { loadComment: loadUtterances }
+      : window.loadOtherComment = loadUtterances
+    return
+  }
+  
+  if ('Utterances' === 'Utterances' || !false) {
+    if (false) btf.loadComment(document.getElementById('utterances-wrap'), loadUtterances)
+    else loadUtterances()
+  } else {
+    window.loadOtherComment = loadUtterances
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
